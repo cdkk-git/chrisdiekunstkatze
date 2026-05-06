@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /Recovery/
+Allow: /
+
+Sitemap: https://chrisdiekunstkatze.github.io/sitemap.xml

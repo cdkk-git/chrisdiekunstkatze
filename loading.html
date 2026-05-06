@@ -14,7 +14,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="Assets\Favicon\favicon-16x16.png">
   <link rel="apple-touch-icon" href="Assets\Favicon\apple-touch-icon.png">
   <link rel="manifest" href="Assets\Favicon\site.webmanifest">
-  <meta name="theme-color" content="#0066cc">
+  <meta name="theme-color" content="#00ccff">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
   
   <style>
     * {
@@ -23,15 +28,10 @@
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-      font-family: 'Arial', sans-serif;
-      line-height: 1.8;
-      color: #222;
+      background: linear-gradient(180deg, #000033 0%, #001155 45%, #000033 100%);
+      font-family: 'Segoe UI', Verdana, Arial, sans-serif;
+      color: #00ccff;
       font-size: 14px;
       min-height: 100vh;
       display: flex;
@@ -41,62 +41,262 @@
       position: relative;
     }
 
-    /* PSP Screen Border Effect */
-    body::before {
-      content: '';
-      position: fixed;
+    /* Wave Background */
+    .wave-container {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      border: 30px solid #1a1a1a;
-      border-radius: 20px;
-      box-shadow: inset 0 0 30px rgba(0,0,0,0.8), 0 0 50px rgba(0,0,0,0.9);
-      pointer-events: none;
-      z-index: 1000;
+      overflow: hidden;
+      z-index: 1;
     }
 
-    /* PSP Screen Scan Lines Effect */
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+    .wave {
+      position: absolute;
+      width: 200%;
       height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(0,0,0,0.15),
-        rgba(0,0,0,0.15) 1px,
-        transparent 1px,
-        transparent 2px
-      );
-      pointer-events: none;
-      z-index: 999;
-      animation: scanlines 8s linear infinite;
+      background: linear-gradient(45deg, rgba(0,204,255,0.1), rgba(0,102,204,0.05));
+      animation: waveMove 10s ease-in-out infinite;
     }
 
-    @keyframes scanlines {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(10px); }
+    .wave:nth-child(1) {
+      top: 0;
+      animation-delay: 0s;
     }
 
-    .loading-container {
+    .wave:nth-child(2) {
+      top: 20%;
+      animation-delay: -2s;
+      background: linear-gradient(45deg, rgba(0,170,255,0.08), rgba(0,85,170,0.03));
+    }
+
+    .wave:nth-child(3) {
+      top: 40%;
+      animation-delay: -4s;
+      background: linear-gradient(45deg, rgba(0,136,255,0.06), rgba(0,68,128,0.02));
+    }
+
+    .wave:nth-child(4) {
+      top: 60%;
+      animation-delay: -6s;
+      background: linear-gradient(45deg, rgba(0,102,255,0.04), rgba(0,51,102,0.01));
+    }
+
+    .wave:nth-child(5) {
+      top: 80%;
+      animation-delay: -8s;
+      background: linear-gradient(45deg, rgba(0,68,170,0.02), rgba(0,34,85,0.005));
+    }
+
+    @keyframes waveMove {
+      0% { transform: translateX(-50%) rotate(0deg); }
+      50% { transform: translateX(-50%) rotate(180deg); }
+      100% { transform: translateX(-50%) rotate(360deg); }
+    }
+
+    /* Loading Content */
+    .loading-content {
       text-align: center;
-      background: linear-gradient(180deg, #0a4d7d 0%, #073a5e 50%, #052a45 100%);
-      padding: 60px 40px;
-      border: 8px solid #1a1a1a;
-      border-radius: 10px;
-      box-shadow: 
-        0 0 30px rgba(0, 102, 204, 0.8),
-        inset 0 0 20px rgba(0, 102, 204, 0.3),
-        0 10px 40px rgba(0,0,0,0.9);
-      max-width: 400px;
+      background: linear-gradient(180deg, rgba(0,204,255,.1) 0%, rgba(0,204,255,.05) 24%, rgba(0,204,255,.02) 100%), linear-gradient(180deg, #001122 0%, #002244 100%);
+      border: 2px solid #00ccff;
+      border-radius: 4px;
+      padding: 40px;
+      box-shadow: inset 0 1px 0 rgba(0,204,255,.3), inset 0 -1px 0 rgba(0,0,0,.5), 0 3px 0 rgba(0,0,0,.4), 0 8px 18px rgba(0,0,0,.5);
+      max-width: 500px;
       width: 90%;
       position: relative;
-      z-index: 100;
-      animation: screenFlicker 3s ease-in-out;
+      z-index: 10;
+      animation: contentFadeIn 2s ease-out;
     }
+
+    @keyframes contentFadeIn {
+      0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .logo-section {
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      height: 80px;
+      width: auto;
+      filter: drop-shadow(0 0 20px #00ccff);
+      animation: logoGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes logoGlow {
+      0%, 100% { filter: drop-shadow(0 0 20px #00ccff) brightness(1); }
+      50% { filter: drop-shadow(0 0 40px #00ffff) brightness(1.2); }
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #00ccff;
+      text-shadow: 0 0 20px rgba(0,204,255,.8);
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #00aaff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 30px;
+    }
+
+    /* Wave Progress Bar */
+    .wave-progress {
+      margin: 30px 0;
+      position: relative;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #000033;
+      border: 1px solid #00ccff;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00ccff, #0080ff, #004080);
+      width: 0%;
+      animation: fillProgress 4s ease-out forwards;
+      position: relative;
+    }
+
+    .progress-fill::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s ease-in-out infinite;
+    }
+
+    @keyframes fillProgress {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .progress-text {
+      font-size: 12px;
+      color: #00ccff;
+      margin-top: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Wave Animation Dots */
+    .wave-dots {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(circle, #00ccff, #0080ff);
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00ccff;
+      animation: dotWave 2s ease-in-out infinite;
+    }
+
+    .dot:nth-child(1) { animation-delay: 0s; }
+    .dot:nth-child(2) { animation-delay: 0.3s; }
+    .dot:nth-child(3) { animation-delay: 0.6s; }
+    .dot:nth-child(4) { animation-delay: 0.9s; }
+    .dot:nth-child(5) { animation-delay: 1.2s; }
+
+    @keyframes dotWave {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.5); opacity: 1; }
+    }
+
+    /* Loading Messages */
+    .loading-messages {
+      font-size: 11px;
+      color: #00aaff;
+      font-family: 'Courier New', monospace;
+      line-height: 1.6;
+      margin-top: 20px;
+    }
+
+    .message {
+      opacity: 0;
+      animation: messageFade 1s ease-out forwards;
+    }
+
+    .message:nth-child(1) { animation-delay: 0.5s; }
+    .message:nth-child(2) { animation-delay: 1.5s; }
+    .message:nth-child(3) { animation-delay: 2.5s; }
+    .message:nth-child(4) { animation-delay: 3.5s; }
+
+    @keyframes messageFade {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Fallback */
+    .fallback {
+      font-size: 10px;
+      color: #0080ff;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #00ccff;
+    }
+
+    .fallback a {
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .fallback a:hover {
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .loading-content {
+        padding: 30px 20px;
+        max-width: 100%;
+        margin: 20px;
+      }
+
+      .title {
+        font-size: 24px;
+      }
+
+      .logo {
+        height: 60px;
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .wave, .progress-fill, .dot, .message {
+        animation: none;
+      }
+    }
+  </style>
 
     @keyframes screenFlicker {
       0% {
@@ -525,65 +725,48 @@
 </head>
 <body>
 
-  <div class="loading-container">
-    
-    <!-- PSP Style Header -->
-    <div class="psp-header">
-      <div class="psp-brand">CDKK</div>
-      <div class="psp-tagline">PlayStation Network</div>
-    </div>
+<body>
 
-    <!-- Logo/Icon -->
-    <div class="logo-wrapper">
+  <div class="wave-container">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+  <div class="loading-content">
+    <div class="logo-section">
       <img src="Assets/Image/cdkk_svg_blue.png" alt="CDKK Logo" class="logo">
+      <h1 class="title">CDKK Network</h1>
+      <p class="subtitle">Initializing Wave Interface</p>
     </div>
 
-    <!-- Loading Progress Section -->
-    <div class="progress-section">
-      <div class="loading-status">
-        <span class="blinking-cursor">Now Loading</span>
+    <div class="wave-progress">
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
       </div>
-
-      <!-- PSP Loading Bar -->
-      <div class="psp-loading-bar">
-        <div class="psp-bar-fill"></div>
-      </div>
-
-      <div class="psp-percentage">
-        <span class="progress-value">0</span>%
-      </div>
+      <div class="progress-text">Loading... <span id="progress-percent">0</span>%</div>
     </div>
 
-    <!-- Dot Matrix Indicator -->
-    <div class="dot-matrix">
-      <div class="matrix-dot"></div>
-      <div class="matrix-dot"></div>
-      <div class="matrix-dot"></div>
-      <div class="matrix-dot"></div>
-      <div class="matrix-dot"></div>
+    <div class="wave-dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
     </div>
 
-    <!-- Loading Stages -->
-    <div class="psp-stages">
-      <div class="psp-stage loading"></div>
-      <div class="psp-stage"></div>
-      <div class="psp-stage"></div>
-      <div class="psp-stage"></div>
+    <div class="loading-messages">
+      <div class="message">🌊 Establishing wave connection...</div>
+      <div class="message">🔄 Synchronizing data streams...</div>
+      <div class="message">⚡ Activating cybercore protocols...</div>
+      <div class="message">🚀 Launch sequence initiated</div>
     </div>
 
-    <!-- PSP-Style Boot Text -->
-    <div class="load-text">
-      <div class="load-line">INITIALIZING SYSTEM...</div>
-      <div class="load-line">LOADING RESOURCES...</div>
-      <div class="load-line">PREPARING ENVIRONMENT...</div>
-      <div class="load-line">READY FOR LAUNCH<span class="blinking-cursor"></span></div>
+    <div class="fallback">
+      If loading fails, <a href="index.html">proceed manually</a>
     </div>
-
-    <!-- Fallback Message -->
-    <div class="fallback-message">
-      If page doesn't load, <a href="index.html">click here</a>
-    </div>
-
   </div>
 
   <!-- Screen Reader Announcement -->
@@ -592,110 +775,34 @@
   </div>
 
   <script>
-    // ===== CREDITS =====
-    // This loading page was enhanced with GitHub Copilot AI Assistant
-    // PSP-inspired animations and interactive elements generated with AI assistance
-    // ==================
+    let progress = 0;
+    const progressElement = document.getElementById('progress-percent');
+    const fillElement = document.querySelector('.progress-fill');
 
-    // PSP Boot Animation Sequence
-    const progressValue = document.querySelector('.progress-value');
-    const barFill = document.querySelector('.psp-bar-fill');
-    const stages = document.querySelectorAll('.psp-stage');
-    let currentProgress = 0;
+    function updateProgress() {
+      progress += Math.random() * 15 + 5;
+      if (progress > 100) progress = 100;
 
-    function animateProgress() {
-      let targetProgress = Math.random() * 30 + 20; // Random 20-50% increments
-      const duration = Math.random() * 1000 + 800; // 800-1800ms per increment
-      const startTime = Date.now();
-      const startProgress = currentProgress;
+      progressElement.textContent = Math.floor(progress);
+      fillElement.style.width = progress + '%';
 
-      const animate = () => {
-        const elapsed = Date.now() - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        currentProgress = Math.floor(startProgress + (targetProgress * progress));
-
-        if (currentProgress > 95) currentProgress = 95;
-
-        updateProgressDisplay();
-        updateStages();
-
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        } else if (currentProgress < 95) {
-          setTimeout(animateProgress, 500);
-        }
-      };
-
-      animate();
-    }
-
-    function updateProgressDisplay() {
-      if (progressValue) {
-        progressValue.textContent = currentProgress;
-      }
-    }
-
-    function updateStages() {
-      const stageProgress = Math.floor((currentProgress / 100) * stages.length);
-      stages.forEach((stage, index) => {
-        if (index < stageProgress) {
-          stage.classList.remove('loading');
-          stage.classList.add('completed');
-        } else if (index === stageProgress && stageProgress < stages.length) {
-          stage.classList.add('loading');
-          stage.classList.remove('completed');
-        } else {
-          stage.classList.remove('loading', 'completed');
-        }
-      });
-    }
-
-    // Start animation sequence
-    setTimeout(() => {
-      animateProgress();
-    }, 1500); // Wait for initial intro animations
-
-    // Redirect on page load
-    window.addEventListener('load', () => {
-      currentProgress = 100;
-      updateProgressDisplay();
-      
-      // Fade out effect before redirect
-      setTimeout(() => {
-        const container = document.querySelector('.loading-container');
-        container.style.animation = 'fadeOut 1s ease-out forwards';
-        
+      if (progress < 100) {
+        setTimeout(updateProgress, Math.random() * 1000 + 500);
+      } else {
         setTimeout(() => {
           window.location.href = 'index.html';
-        }, 1000);
-      }, 1500);
-    });
-
-    // CSS for fade out animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes fadeOut {
-        0% { opacity: 1; }
-        100% { opacity: 0; }
+        }, 1500);
       }
-    `;
-    document.head.appendChild(style);
+    }
 
-    // Fallback redirect
+    setTimeout(updateProgress, 1000);
+
+    // Fallback
     setTimeout(() => {
-      if (currentProgress < 100) {
+      if (progress < 100) {
         window.location.href = 'index.html';
       }
     }, 15000);
-
-    // Update screen reader status
-    const srStatus = document.querySelector('[aria-live]');
-    setInterval(() => {
-      if (srStatus && currentProgress < 100) {
-        srStatus.textContent = `Page is loading. ${currentProgress}% complete.`;
-      }
-    }, 2000);
-
   </script>
 
 </body>

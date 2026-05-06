@@ -8,7 +8,12 @@
   <link rel="icon" type="image/x-icon" href="Assets\Favicon\favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="Assets\Favicon\favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="Assets\Favicon\favicon-16x16.png" />
-  <meta name="theme-color" content="#0066cc" />
+  <meta name="theme-color" content="#00ccff">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,10 +22,10 @@
     body {
       font-family: Tahoma, Verdana, Arial, sans-serif;
       line-height: 1.7;
-      color: #12243e;
+      color:#00ccff;
       background:
-        radial-gradient(circle at 20% 20%, rgba(95,170,255,.25) 0 2px, transparent 2px) 0 0/24px 24px,
-        linear-gradient(180deg, #0d2242 0%, #173765 45%, #0d2242 100%);
+        radial-gradient(circle at 20% 20%, rgba(0,204,255,.15) 0 2px, transparent 2px) 0 0/24px 24px,
+        linear-gradient(180deg, #000033 0%, #001155 45%, #000033 100%);
       font-size: 14px;
     }
 
@@ -40,10 +45,10 @@
     header, .site-layout, .content-area, main, footer { position: relative; z-index: 2; }
 
     header {
-      background: linear-gradient(180deg, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 35%), linear-gradient(180deg, #2f7ee6 0%, #1f5ea8 100%);
+      background: linear-gradient(180deg, rgba(0,204,255,.2) 0%, rgba(0,204,255,0) 35%), linear-gradient(180deg, #001144 0%, #002266 100%);
       padding: 18px 24px;
       display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
-      border-bottom: 3px solid #00152f;
+      border-bottom: 3px solid #00ccff;
       box-shadow: 0 4px 8px rgba(0,0,0,.4);
       position: sticky; top: 0; z-index: 999;
     }
