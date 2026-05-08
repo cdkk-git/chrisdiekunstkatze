@@ -1,0 +1,81 @@
+:root {
+  --y2k-glow: rgba(112, 178, 255, 0.35);
+  --y2k-glow-strong: rgba(127, 255, 230, 0.45);
+  --y2k-surface: rgba(12, 24, 71, 0.86);
+  --y2k-border: rgba(112, 178, 255, 0.32);
+  --y2k-text: #e8f1ff;
+}
+
+/* Y2K shader panel effect */
+.y2k-shader {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(20, 34, 82, 0.95), rgba(8, 18, 52, 0.92));
+  border: 1px solid var(--y2k-border);
+  border-radius: 24px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03), 0 18px 50px rgba(0, 0, 0, 0.28);
+  color: var(--y2k-text);
+}
+
+.y2k-shader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 10% 10%, var(--y2k-glow), transparent 15%),
+              radial-gradient(circle at 90% 20%, var(--y2k-glow-strong), transparent 18%),
+              radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.06), transparent 22%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.y2k-shader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 30%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.y2k-shader > * {
+  position: relative;
+  z-index: 1;
+}
+
+.y2k-shader.glass {
+  backdrop-filter: blur(18px) saturate(140%);
+  background: rgba(12, 24, 71, 0.62);
+}
+
+.y2k-shader-title {
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d9ecff;
+}
+
+.y2k-shader-description {
+  color: rgba(232, 241, 255, 0.78);
+  line-height: 1.75;
+  margin-top: 0.75rem;
+}
+
+.y2k-shader-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.2rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #70b2ff, #7fffe6);
+  color: #05112d;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(112, 178, 255, 0.22);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.y2k-shader-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 32px rgba(112, 178, 255, 0.28);
+}
