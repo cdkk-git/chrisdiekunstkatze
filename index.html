@@ -3,32 +3,497 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CDKK Network — Overview</title>
+<title>CDKK Network</title>
 <link rel="icon" type="image/svg+xml" href="Assets/Favicon/favicon.svg">
 <link rel="alternate icon" href="Assets/Favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="96x96" href="Assets/Favicon/favicon-96x96.png">
 <link rel="apple-touch-icon" href="Assets/Favicon/apple-touch-icon.png">
 <link rel="manifest" href="Assets/Favicon/site.webmanifest">
-<meta name="theme-color" content="#0b1233">
-<link rel="stylesheet" href="styles.css">
+<meta name="theme-color" content="#00010f">
+<link rel="stylesheet" href="ps2-background.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --border: rgba(70,130,255,0.18);
+    --border-hover: rgba(70,130,255,0.38);
+    --accent: #4d8fff;
+    --text: #d8e8ff;
+    --text-muted: #5a7ab0;
+    --white: #eaf2ff;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+  html, body { height: 100%; overflow: hidden; }
+  body { color: var(--text); font-family: var(--font-body); font-weight: 300; }
+
+  .profile {
+    position: fixed;
+    top: 50%; left: 7vw;
+    transform: translateY(-50%);
+    z-index: 20;
+    display: flex; flex-direction: column; gap: 2rem;
+    max-width: 360px;
+    animation: slideIn 0.9s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  @keyframes slideIn {
+    from { opacity:0; transform: translateY(-50%) translateX(-30px); }
+    to   { opacity:1; transform: translateY(-50%) translateX(0); }
+  }
+  .profile-header { display:flex; align-items:center; gap:1.1rem; }
+  .logo-ring {
+    width:64px; height:64px; border-radius:50%;
+    border:1.5px solid var(--border-hover);
+    background:rgba(4,16,60,0.55);
+    backdrop-filter:blur(12px);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    box-shadow:0 0 24px rgba(77,143,255,0.25), inset 0 0 16px rgba(77,143,255,0.08);
+  }
+  .logo-ring img { width:36px; height:36px; object-fit:contain; filter:drop-shadow(0 0 6px rgba(120,170,255,0.6)); }
+  .name-block { display:flex; flex-direction:column; gap:0.25rem; }
+  .brand-name {
+    font-family:var(--font-display); font-size:2.2rem; font-weight:700;
+    color:var(--white); letter-spacing:-0.02em; line-height:1;
+    text-shadow:0 0 40px rgba(77,143,255,0.5), 0 0 80px rgba(26,79,255,0.2);
+  }
+  .brand-sub { font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); opacity:0.8; }
+  .divider { width:100%; height:1px; background:linear-gradient(90deg, var(--border-hover), transparent); }
+  .about-card {
+    background:rgba(2,8,40,0.52); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--border); border-radius:12px; padding:1.5rem 1.75rem;
+    display:flex; flex-direction:column; gap:0.9rem; position:relative; overflow:hidden;
+  }
+  .about-card::before {
+    content:''; position:absolute; top:0; left:0; width:2px; height:100%;
+    background:linear-gradient(to bottom, transparent, var(--accent), transparent); opacity:0.6;
+  }
+  .about-label { font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); opacity:0.75; }
+  .about-text { font-size:0.9rem; color:#8aaae0; line-height:1.75; font-weight:300; }
+  .tags { display:flex; flex-wrap:wrap; gap:0.45rem; margin-top:0.25rem; }
+  .tag {
+    font-family:var(--font-mono); font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--text-muted); border:1px solid var(--border); border-radius:4px; padding:0.25rem 0.6rem;
+    background:rgba(77,143,255,0.06); transition:border-color 0.2s, color 0.2s;
+  }
+  .tag:hover { border-color:var(--border-hover); color:var(--accent); }
+  @media (max-width:600px) {
+    .profile { left:50%; top:auto; bottom:8vh; transform:translateX(-50%); max-width:88vw; }
+  }
+</style>
 </head>
-<body class="y2k-cybercore">
-<div class="wireframe-window" style="top: 20%; left: 10%; width: 300px; height: 200px; z-index: -1;"></div>
-<div class="wireframe-window" style="top: 50%; right: 15%; width: 250px; height: 150px; z-index: -1;"></div>
-<div class="floating-particles" style="top: 30%; left: 20%; z-index: -1;"></div>
-<div class="floating-particles" style="top: 60%; left: 70%; z-index: -1;"></div>
-<div class="floating-particles" style="top: 80%; left: 40%; z-index: -1;"></div>
-<div class="cyber-lines" style="top: 10%; z-index: -1;"></div>
-<div class="cyber-lines" style="bottom: 20%; z-index: -1;"></div>
-<div class="glitch-text" style="top: 70%; left: 50%; transform: translateX(-50%); z-index: -1;">CYBERCORE</div>
-<header>
-<div class="profile-badge"><div class="avatar"><img src="Assets/Favicon/favicon.svg" alt="CDKK icon"></div><div class="profile-info"><strong>CDKK</strong><span>Chris Die KunstKatze</span></div></div>
-<nav class="top-nav"><a class="active" href="index.html">Overview</a><a href="about.html">About</a><a href="downloads.html">Downloads</a><a href="forum.html">Forum</a><a href="users.html">Users</a><a href="profile.html">Profile</a></nav>
-</header>
-<main>
-<section class="page-title y2k-shader glass"><span class="eyebrow">GitHub-style landing</span><h1>Welcome to CDKK Network</h1><p>Welcome to the retro-futuristic overview page. The design blends a GitHub profile structure with 2000s neon chrome and rounded panel styling.</p><div class="stats-grid"><div class="stat"><strong>17</strong><span>repositories</span></div><div class="stat"><strong>44</strong><span>followers</span></div><div class="stat"><strong>97</strong><span>following</span></div></div></section>
-<section class="cards"><article class="card y2k-shader-grid"><h3>About</h3><p>Read the story behind CDKK and discover the community values driving the project.</p><a href="about.html">Open about</a></article><article class="card y2k-shader-glitch"><h3>Downloads</h3><p>Find files, tools, and assets in a polished repository-like section.</p><a href="downloads.html">Browse downloads</a></article><article class="card y2k-shader-neon"><h3>Forum</h3><p>Jump into conversations and see what the network is discussing now.</p><a href="forum.html">Go to forum</a></article><article class="card y2k-shader glass"><h3>Users</h3><p>Meet featured members and explore community profiles.</p><a href="users.html">Explore users</a></article><article class="card y2k-shader-grid"><h3>Profile</h3><p>View your personal dashboard, activity, and account details.</p><a href="profile.html">View profile</a></article></section>
-</main>
-<footer><span>© 2026 CDKK</span><span>Styled like GitHub with Y2K neon chrome.</span></footer>
+<body class="ps2-bg">
+
+<canvas id="ps2-canvas"></canvas>
+<div id="ps2-scanlines"></div>
+<div id="ps2-vignette"></div>
+
+<div class="profile">
+  <div class="profile-header">
+    <div class="logo-ring">
+      <img src="Assets/Favicon/favicon.svg" alt="CDKK logo">
+    </div>
+    <div class="name-block">
+      <span class="brand-name">CDKK NETWORK</span>
+      <span class="brand-sub">Chris Die KunstKatze</span>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="about-card">
+    <span class="about-label">WELCOME TO THE CYBER NETWORK, FRIENDS!</span>
+    <p class="about-text">The Network is still in development, but we're excited to have you here! Please check back with us soon for more updates and website construction updates!</p>
+    <div class="tags">
+      <span class="tag">ENTHUSIAST</span>
+      <span class="tag">CURATOR</span>
+      <span class="tag">Community</span>
+      <span class="tag">SHARE AND EXPLORE</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const canvas = document.getElementById('ps2-canvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H, mouseX = 0, mouseY = 0;
+
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+
+  const rand  = (a,b) => Math.random()*(b-a)+a;
+  const lerp  = (a,b,t) => a+(b-a)*t;
+  const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
+
+  // ── Colour-shift void palette ────────────────────────────
+  // cycles: deep navy → midnight teal → near-black purple
+  const VOID_PALETTES = [
+    [0,1,15],    // navy
+    [0,8,18],    // teal-leaning
+    [4,0,18],    // purple-leaning
+  ];
+  let paletteIdx = 0, paletteT = 0;
+
+  function voidColor(){
+    const a = VOID_PALETTES[paletteIdx % VOID_PALETTES.length];
+    const b = VOID_PALETTES[(paletteIdx+1) % VOID_PALETTES.length];
+    paletteT += 0.0004;
+    if(paletteT >= 1){ paletteT = 0; paletteIdx = (paletteIdx+1)%VOID_PALETTES.length; }
+    const t = paletteT;
+    return `rgb(${Math.round(lerp(a[0],b[0],t))},${Math.round(lerp(a[1],b[1],t))},${Math.round(lerp(a[2],b[2],t))})`;
+  }
+
+  // ── Stars ────────────────────────────────────────────────
+  const STARS = Array.from({length:200}, () => ({
+    x: rand(0,1), y: rand(0,1),
+    r: rand(0.3,1.4),
+    twinkle: rand(0,Math.PI*2),
+    speed: rand(0.00005,0.0002),
+  }));
+
+  function drawStars(){
+    STARS.forEach(s => {
+      s.twinkle += 0.03;
+      const alpha = 0.2 + 0.5*Math.abs(Math.sin(s.twinkle));
+      ctx.beginPath();
+      ctx.arc(s.x*W, s.y*H, s.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(200,220,255,${alpha})`;
+      ctx.fill();
+    });
+  }
+
+  // ── Perspective ──────────────────────────────────────────
+  function project(x,y,z){
+    const s = 600/(600+z);
+    return { x: W/2+x*s, y: H/2+y*s, s };
+  }
+
+  // ── Cubes ────────────────────────────────────────────────
+  const NUM_CUBES = 30;
+  function makeCube(){
+    return {
+      x: rand(-W*0.8,W*0.8), y: rand(-H*0.8,H*0.8), z: rand(-200,500),
+      size: rand(18,85),
+      vx: rand(-0.14,0.14), vy: rand(-0.1,0.1), vz: rand(-0.15,0.12),
+      satellites: Math.random()<0.35 ? Array.from({length:randInt(1,3)}, () => ({
+        angle:  rand(0,Math.PI*2),
+        speed:  rand(0.008,0.025),
+        dist:   rand(1.4,2.2),
+        size:   rand(4,12),
+      })) : [],
+    };
+  }
+  function randInt(a,b){ return Math.floor(rand(a,b)); }
+  const cubes = Array.from({length:NUM_CUBES}, makeCube);
+
+  function drawCubeMesh(cx,cy,cz,size,alpha,dof){
+    if(dof<0.05) return;
+    const angle = performance.now()*0.0003 + cz*0.002;
+    const cosA=Math.cos(angle), sinA=Math.sin(angle);
+    const cosB=Math.cos(angle*0.7), sinB=Math.sin(angle*0.7);
+
+    function rot(vx,vy,vz){
+      const x1=vx*cosA+vz*sinA, z1=-vx*sinA+vz*cosA;
+      const y2=vy*cosB-z1*sinB, z2=vy*sinB+z1*cosB;
+      return [x1+cx, y2+cy, z2+cz];
+    }
+    const s=size;
+    const raw=[[-s,-s,-s],[s,-s,-s],[s,s,-s],[-s,s,-s],[-s,-s,s],[s,-s,s],[s,s,s],[-s,s,s]];
+    const verts=raw.map(v=>{ const [rx,ry,rz]=rot(...v); return project(rx,ry,rz); });
+    const faces=[[0,1,2,3],[4,5,6,7],[0,1,5,4],[2,3,7,6],[0,3,7,4],[1,2,6,5]];
+    [...faces.map((f,i)=>({i,z:(raw[f[0]][2]+raw[f[1]][2]+raw[f[2]][2]+raw[f[3]][2])/4}))].sort((a,b)=>b.z-a.z).forEach(({i})=>{
+      const f=faces[i], pts=f.map(idx=>verts[idx]);
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x,pts[0].y);
+      pts.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));
+      ctx.closePath();
+      const lt=[0.55,0.35,0.45,0.3,0.2,0.5][i];
+      const depth=clamp(1-(cz+400)/900,0,1);
+      const br=lt*depth*alpha*dof;
+      ctx.fillStyle=`rgba(${Math.round(180*br)},${Math.round(200*br)},${Math.round(255*br)},${alpha*dof*0.85})`;
+      ctx.fill();
+      ctx.strokeStyle=`rgba(140,170,255,${alpha*dof*0.22})`;
+      ctx.lineWidth=0.5; ctx.stroke();
+    });
+  }
+
+  // Draw satellite mini-cubes orbiting a parent
+  function drawSatellites(c){
+    c.satellites.forEach(sat=>{
+      sat.angle += sat.speed;
+      const sx = c.x + Math.cos(sat.angle)*c.size*sat.dist;
+      const sy = c.y + Math.sin(sat.angle)*c.size*sat.dist*0.5;
+      const sz = c.z + Math.sin(sat.angle*0.7)*c.size*0.5;
+      const alpha = clamp(1-(sz/600),0,1);
+      const dof = dofFactor(sz);
+      drawCubeMesh(sx,sy,sz,sat.size,alpha*0.7,dof);
+    });
+  }
+
+  // Depth-of-field: cubes very close or very far get blurry (simulate with alpha fade)
+  function dofFactor(z){
+    const focus = 100;
+    const dist  = Math.abs(z - focus);
+    return clamp(1 - dist/700, 0.08, 1);
+  }
+
+  // Draw a ground-plane shadow under each cube
+  function drawShadow(cx,cz,size,alpha){
+    const shadowY = H*0.78;
+    const proj = project(cx, H*0.78-(H/2), cz);
+    if(proj.y > H) return;
+    const w = size*proj.s*2.2;
+    const h = size*proj.s*0.35;
+    const a = alpha * 0.18 * clamp(1-(cz/600),0,1);
+    ctx.beginPath();
+    ctx.ellipse(proj.x, shadowY, w, h, 0, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(0,10,60,${a})`;
+    ctx.fill();
+  }
+
+  // Collision & bounce (simple sphere-proxy)
+  function collideCubes(){
+    for(let i=0;i<cubes.length;i++){
+      for(let j=i+1;j<cubes.length;j++){
+        const a=cubes[i], b=cubes[j];
+        const dx=a.x-b.x, dy=a.y-b.y, dz=a.z-b.z;
+        const dist=Math.sqrt(dx*dx+dy*dy+dz*dz);
+        const minD=(a.size+b.size)*1.2;
+        if(dist<minD && dist>0){
+          // swap velocity components
+          const nx=dx/dist,ny=dy/dist,nz=dz/dist;
+          const dvx=a.vx-b.vx,dvy=a.vy-b.vy,dvz=a.vz-b.vz;
+          const dot=dvx*nx+dvy*ny+dvz*nz;
+          if(dot<0){
+            a.vx-=dot*nx; a.vy-=dot*ny; a.vz-=dot*nz;
+            b.vx+=dot*nx; b.vy+=dot*ny; b.vz+=dot*nz;
+            // spawn a pulse at midpoint
+            spawnPulse((a.x+b.x)/2,(a.y+b.y)/2,(a.z+b.z)/2);
+          }
+        }
+      }
+    }
+  }
+
+  function updateCubes(){
+    cubes.forEach(c=>{
+      c.x+=c.vx; c.y+=c.vy; c.z+=c.vz;
+      if(c.z>600) c.z=-300; if(c.z<-300) c.z=600;
+      if(c.x>W)   c.x=-W;   if(c.x<-W)   c.x=W;
+      if(c.y>H)   c.y=-H;   if(c.y<-H)   c.y=H;
+    });
+    collideCubes();
+  }
+
+  // ── Pulse waves ──────────────────────────────────────────
+  const pulses = [];
+  let lastAutoPulse = 0;
+
+  function spawnPulse(x,y,z){
+    const proj = project(x,y,z);
+    pulses.push({ x:proj.x, y:proj.y, r:0, maxR:clamp(150+Math.random()*200,100,350), alpha:0.7, life:1 });
+  }
+
+  function autoPulse(now){
+    if(now - lastAutoPulse > 5000){
+      lastAutoPulse = now;
+      pulses.push({ x:W/2+rand(-W*0.1,W*0.1), y:H/2+rand(-H*0.05,H*0.05), r:0, maxR:Math.min(W,H)*0.55, alpha:0.4, life:1 });
+    }
+  }
+
+  function drawPulses(){
+    for(let i=pulses.length-1;i>=0;i--){
+      const p=pulses[i];
+      p.r += 3.5; p.life = 1-(p.r/p.maxR);
+      if(p.life<=0){ pulses.splice(i,1); continue; }
+      const a = p.alpha * p.life * p.life;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.strokeStyle=`rgba(80,140,255,${a})`;
+      ctx.lineWidth = 1.5*(1-p.r/p.maxR)+0.5;
+      ctx.stroke();
+    }
+  }
+
+  // ── Central glow (colour-shifting) ───────────────────────
+  function drawGlow(t){
+    const cx=W*0.5+Math.sin(t)*W*0.04;
+    const cy=H*0.55+Math.cos(t*0.7)*H*0.04;
+    const r=Math.min(W,H)*0.45;
+    const hue = 200 + 30*Math.sin(t*0.3);
+    const g=ctx.createRadialGradient(cx,cy,0,cx,cy,r);
+    g.addColorStop(0,   `hsla(${hue},90%,55%,0.28)`);
+    g.addColorStop(0.35,`hsla(${hue},80%,40%,0.13)`);
+    g.addColorStop(0.65,`hsla(${hue+20},70%,20%,0.06)`);
+    g.addColorStop(1,   'transparent');
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  }
+
+  // ── Light trails ─────────────────────────────────────────
+  const TRAIL_COLORS = ['#00ff60','#cc44ff','#ff3030','#5599ff','#ff9933'];
+  const NUM_TRAILS = 5;
+
+  function makeTrail(i){
+    const hueShift = performance.now()*0.02;
+    return {
+      baseColor: TRAIL_COLORS[i%TRAIL_COLORS.length],
+      hueOffset: rand(-30,30),
+      t: rand(0,0.5), speed: rand(0.0018,0.0045), trailLen: rand(0.18,0.38),
+      sx:rand(0,W), sy:rand(0.15*H,0.9*H),
+      cpx:rand(0.15*W,0.85*W), cpy:rand(0.05*H,0.75*H),
+      ex:rand(0,W), ey:rand(0.1*H,0.85*H),
+      fork: null, forked: false,
+    };
+  }
+
+  const trails = Array.from({length:NUM_TRAILS},(_,i)=>makeTrail(i));
+
+  function bezier(t,sx,sy,cpx,cpy,ex,ey){
+    const u=1-t;
+    return { x:u*u*sx+2*u*t*cpx+t*t*ex, y:u*u*sy+2*u*t*cpy+t*t*ey };
+  }
+
+  // Cursor influence: bend trail head toward/away from mouse
+  function cursorBend(pt, strength){
+    const dx = pt.x - mouseX, dy = pt.y - mouseY;
+    const dist = Math.sqrt(dx*dx+dy*dy);
+    if(dist < 250 && dist > 0){
+      const force = (250-dist)/250 * strength;
+      return { x: pt.x + (dx/dist)*force, y: pt.y + (dy/dist)*force };
+    }
+    return pt;
+  }
+
+  function drawTrail(tr, now){
+    const {t,trailLen,sx,sy,cpx,cpy,ex,ey} = tr;
+    // Hue-shift color over time
+    const hue = parseInt(tr.baseColor.replace('#',''),16);
+    const colorShift = Math.sin(now*0.0005+tr.hueOffset)*30;
+    const steps=70, tStart=Math.max(0,t-trailLen), tEnd=t;
+
+    ctx.beginPath();
+    for(let i=0;i<=steps;i++){
+      const tt=tStart+(tEnd-tStart)*(i/steps);
+      let pt=bezier(tt,sx,sy,cpx,cpy,ex,ey);
+      if(i===steps) pt=cursorBend(pt,40);
+      i===0?ctx.moveTo(pt.x,pt.y):ctx.lineTo(pt.x,pt.y);
+    }
+    const head=cursorBend(bezier(tEnd,sx,sy,cpx,cpy,ex,ey),40);
+    const tail=bezier(tStart,sx,sy,cpx,cpy,ex,ey);
+
+    const grad=ctx.createLinearGradient(tail.x,tail.y,head.x,head.y);
+    grad.addColorStop(0,'transparent');
+    grad.addColorStop(0.5,tr.baseColor+'22');
+    grad.addColorStop(1,tr.baseColor+'dd');
+    ctx.strokeStyle=grad; ctx.lineWidth=1.6; ctx.stroke();
+
+    // Afterglow smear
+    ctx.beginPath();
+    for(let i=0;i<=steps;i++){
+      const tt=tStart+(tEnd-tStart)*(i/steps);
+      let pt=bezier(tt,sx,sy,cpx,cpy,ex,ey);
+      i===0?ctx.moveTo(pt.x,pt.y):ctx.lineTo(pt.x,pt.y);
+    }
+    ctx.strokeStyle=tr.baseColor+'0a'; ctx.lineWidth=8; ctx.stroke();
+
+    // Orb
+    const glow=ctx.createRadialGradient(head.x,head.y,0,head.x,head.y,12);
+    glow.addColorStop(0,tr.baseColor+'ff');
+    glow.addColorStop(0.35,tr.baseColor+'99');
+    glow.addColorStop(1,'transparent');
+    ctx.beginPath(); ctx.arc(head.x,head.y,12,0,Math.PI*2); ctx.fillStyle=glow; ctx.fill();
+    ctx.beginPath(); ctx.arc(head.x,head.y,2.5,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.fill();
+
+    // Lens flare if near screen center
+    const dcx=Math.abs(head.x-W/2), dcy=Math.abs(head.y-H/2);
+    if(dcx<W*0.2 && dcy<H*0.25){
+      const fa=0.18*(1-dcx/(W*0.2))*(1-dcy/(H*0.25));
+      const fl=ctx.createRadialGradient(head.x,head.y,0,head.x,head.y,60);
+      fl.addColorStop(0,tr.baseColor+Math.round(fa*255).toString(16).padStart(2,'0'));
+      fl.addColorStop(1,'transparent');
+      ctx.beginPath(); ctx.arc(head.x,head.y,60,0,Math.PI*2); ctx.fillStyle=fl; ctx.fill();
+    }
+
+    // Fork near end
+    if(t>0.65 && !tr.forked){
+      tr.forked=true;
+      tr.fork={
+        t:0, speed:tr.speed*1.2, trailLen:tr.trailLen*0.5,
+        sx:head.x, sy:head.y, cpx:head.x+rand(-150,150), cpy:head.y+rand(-120,80),
+        ex:head.x+rand(-200,200), ey:head.y+rand(50,200),
+        baseColor:tr.baseColor, hueOffset:tr.hueOffset+40,
+      };
+    }
+    if(tr.fork){
+      tr.fork.t+=tr.fork.speed;
+      if(tr.fork.t<1.1) drawFork(tr.fork, now);
+    }
+  }
+
+  function drawFork(f, now){
+    const {t,trailLen,sx,sy,cpx,cpy,ex,ey}=f;
+    const steps=40, tStart=Math.max(0,t-trailLen), tEnd=Math.min(1,t);
+    ctx.beginPath();
+    for(let i=0;i<=steps;i++){
+      const tt=tStart+(tEnd-tStart)*(i/steps);
+      const pt=bezier(tt,sx,sy,cpx,cpy,ex,ey);
+      i===0?ctx.moveTo(pt.x,pt.y):ctx.lineTo(pt.x,pt.y);
+    }
+    const head=bezier(tEnd,sx,sy,cpx,cpy,ex,ey);
+    const tail=bezier(tStart,sx,sy,cpx,cpy,ex,ey);
+    const grad=ctx.createLinearGradient(tail.x,tail.y,head.x,head.y);
+    grad.addColorStop(0,'transparent');
+    grad.addColorStop(1,f.baseColor+'99');
+    ctx.strokeStyle=grad; ctx.lineWidth=0.9; ctx.stroke();
+    const g=ctx.createRadialGradient(head.x,head.y,0,head.x,head.y,7);
+    g.addColorStop(0,f.baseColor+'ff'); g.addColorStop(1,'transparent');
+    ctx.beginPath(); ctx.arc(head.x,head.y,7,0,Math.PI*2); ctx.fillStyle=g; ctx.fill();
+  }
+
+  function updateTrails(){
+    trails.forEach((tr,i)=>{
+      tr.t+=tr.speed;
+      if(tr.t>=1.15){
+        const fresh=makeTrail(i); fresh.t=0;
+        Object.assign(tr,fresh);
+      }
+    });
+  }
+
+  // ── Render loop ──────────────────────────────────────────
+  function render(now){
+    const t=now*0.0005;
+
+    // Background — colour-shifting void
+    ctx.fillStyle=voidColor();
+    ctx.fillRect(0,0,W,H);
+
+    drawStars();
+    drawGlow(t);
+    autoPulse(now);
+    drawPulses();
+
+    // Cubes back-to-front
+    updateCubes();
+    [...cubes].sort((a,b)=>b.z-a.z).forEach(c=>{
+      drawShadow(c.x,c.z,c.size,clamp(1-c.z/600,0,1));
+      const alpha=clamp(1-(c.z/600),0,1);
+      const dof=dofFactor(c.z);
+      if(alpha>0.02) drawCubeMesh(c.x,c.y,c.z,c.size,alpha,dof);
+      drawSatellites(c);
+    });
+
+    updateTrails();
+    trails.forEach(tr=>drawTrail(tr,now));
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+})();
+</script>
 </body>
 </html>

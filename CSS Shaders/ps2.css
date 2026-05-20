@@ -1,0 +1,295 @@
+/*
+  ps2-background.css
+  ──────────────────────────────────────────────────────────────
+  PS2 Startup Screen — Animated Blue Background
+  Inspired by the iconic PlayStation 2 boot sequence:
+    • Deep navy void
+    • Rising blue memory towers / pillars
+    • Drifting particle streams
+    • Nebula light wash
+    • Lens-flare pulse
+    • Warp-speed star streaks
+
+  Usage:
+    Add <link rel="stylesheet" href="ps2-background.css"> to your page.
+    Add class="ps2-bg" to your <body>, or wrap content in a
+    <div class="ps2-bg"> container.
+
+    The canvas layer sits at z-index: 0. Your content should be
+    positioned at z-index: 1 or higher.
+  ──────────────────────────────────────────────────────────────
+*/
+
+/* ── Variables ── */
+:root {
+  --ps2-void:        #00010a;
+  --ps2-deep:        #020824;
+  --ps2-mid:         #04154d;
+  --ps2-blue:        #0a2a9f;
+  --ps2-bright:      #1a4fff;
+  --ps2-glow:        #4d8fff;
+  --ps2-flare:       #a8c8ff;
+  --ps2-white:       #dce9ff;
+}
+
+/* ── Root container ── */
+.ps2-bg {
+  position: relative;
+  background: var(--ps2-void);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ── Layer 0: Deep nebula gradient wash ── */
+.ps2-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 140% 80% at 50% 110%,
+      var(--ps2-blue) 0%,
+      var(--ps2-mid) 30%,
+      var(--ps2-deep) 60%,
+      var(--ps2-void) 100%),
+    radial-gradient(ellipse 60% 40% at 20% 60%,
+      rgba(10,42,159,0.4) 0%,
+      transparent 70%),
+    radial-gradient(ellipse 50% 30% at 80% 50%,
+      rgba(26,79,255,0.25) 0%,
+      transparent 60%);
+  animation: ps2-nebula 12s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes ps2-nebula {
+  0%   { opacity: 0.85; transform: scale(1)   translateY(0px); }
+  50%  { opacity: 1;    transform: scale(1.04) translateY(-12px); }
+  100% { opacity: 0.9;  transform: scale(1.02) translateY(8px); }
+}
+
+/* ── Layer 1: Grid floor (PS2 horizon grid) ── */
+.ps2-bg::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: -10%;
+  width: 120%;
+  height: 55%;
+  z-index: 1;
+  background-image:
+    linear-gradient(to bottom, transparent 0%, rgba(10,42,159,0.18) 100%),
+    linear-gradient(rgba(26,79,255,0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,79,255,0.2) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    100% clamp(20px, 3vw, 40px),
+    clamp(30px, 4vw, 60px) 100%;
+  transform: perspective(600px) rotateX(55deg) translateY(20%);
+  transform-origin: bottom center;
+  animation: ps2-grid 20s linear infinite;
+  pointer-events: none;
+  mask-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+
+@keyframes ps2-grid {
+  0%   { background-position: 0 0,   0 0,   0 0; }
+  100% { background-position: 0 0,   0 80px, 0 0; }
+}
+
+/* ══════════════════════════════════════════════════
+   TOWER PILLARS — the rising PS2 memory columns
+   ══════════════════════════════════════════════════ */
+.ps2-tower {
+  position: fixed;
+  bottom: 0;
+  width: clamp(2px, 0.35vw, 5px);
+  transform-origin: bottom center;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: 1px 1px 0 0;
+}
+
+/* Each tower has a shimmer reflection */
+.ps2-tower::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--ps2-white) 0%, transparent 30%);
+  opacity: 0.5;
+  border-radius: inherit;
+}
+
+/* Tower colour layers */
+.ps2-tower { background: linear-gradient(to top, var(--ps2-white) 0%, var(--ps2-flare) 10%, var(--ps2-glow) 35%, var(--ps2-bright) 70%, transparent 100%); }
+
+/* 30 towers spread across width */
+.ps2-tower:nth-child(1)  { left:  1.5%; animation: ps2-rise  9.2s 0.0s ease-in-out infinite alternate; height: 42vh; }
+.ps2-tower:nth-child(2)  { left:  4.8%; animation: ps2-rise 11.0s 0.4s ease-in-out infinite alternate; height: 68vh; }
+.ps2-tower:nth-child(3)  { left:  7.2%; animation: ps2-rise  8.5s 0.8s ease-in-out infinite alternate; height: 31vh; }
+.ps2-tower:nth-child(4)  { left: 10.0%; animation: ps2-rise 13.0s 1.1s ease-in-out infinite alternate; height: 82vh; }
+.ps2-tower:nth-child(5)  { left: 13.5%; animation: ps2-rise  7.8s 0.2s ease-in-out infinite alternate; height: 25vh; }
+.ps2-tower:nth-child(6)  { left: 16.0%; animation: ps2-rise 10.4s 1.6s ease-in-out infinite alternate; height: 55vh; }
+.ps2-tower:nth-child(7)  { left: 19.3%; animation: ps2-rise 12.1s 0.7s ease-in-out infinite alternate; height: 73vh; }
+.ps2-tower:nth-child(8)  { left: 22.7%; animation: ps2-rise  9.7s 2.0s ease-in-out infinite alternate; height: 38vh; }
+.ps2-tower:nth-child(9)  { left: 25.5%; animation: ps2-rise 14.3s 0.3s ease-in-out infinite alternate; height: 90vh; }
+.ps2-tower:nth-child(10) { left: 28.0%; animation: ps2-rise  8.0s 1.4s ease-in-out infinite alternate; height: 29vh; }
+.ps2-tower:nth-child(11) { left: 31.2%; animation: ps2-rise 11.6s 0.9s ease-in-out infinite alternate; height: 61vh; }
+.ps2-tower:nth-child(12) { left: 34.0%; animation: ps2-rise  7.2s 1.8s ease-in-out infinite alternate; height: 22vh; }
+.ps2-tower:nth-child(13) { left: 37.5%; animation: ps2-rise 15.0s 0.1s ease-in-out infinite alternate; height: 95vh; }
+.ps2-tower:nth-child(14) { left: 40.0%; animation: ps2-rise  9.0s 2.3s ease-in-out infinite alternate; height: 44vh; }
+.ps2-tower:nth-child(15) { left: 43.3%; animation: ps2-rise 12.8s 0.6s ease-in-out infinite alternate; height: 78vh; }
+.ps2-tower:nth-child(16) { left: 46.5%; animation: ps2-rise  8.8s 1.2s ease-in-out infinite alternate; height: 35vh; }
+.ps2-tower:nth-child(17) { left: 50.0%; animation: ps2-rise 10.0s 0.5s ease-in-out infinite alternate; height: 50vh; }
+.ps2-tower:nth-child(18) { left: 53.2%; animation: ps2-rise 13.5s 1.9s ease-in-out infinite alternate; height: 85vh; }
+.ps2-tower:nth-child(19) { left: 56.5%; animation: ps2-rise  7.5s 0.4s ease-in-out infinite alternate; height: 28vh; }
+.ps2-tower:nth-child(20) { left: 59.0%; animation: ps2-rise 11.2s 1.5s ease-in-out infinite alternate; height: 65vh; }
+.ps2-tower:nth-child(21) { left: 62.3%; animation: ps2-rise  9.5s 2.1s ease-in-out infinite alternate; height: 40vh; }
+.ps2-tower:nth-child(22) { left: 65.0%; animation: ps2-rise 14.8s 0.8s ease-in-out infinite alternate; height: 88vh; }
+.ps2-tower:nth-child(23) { left: 68.5%; animation: ps2-rise  8.3s 1.7s ease-in-out infinite alternate; height: 33vh; }
+.ps2-tower:nth-child(24) { left: 71.0%; animation: ps2-rise 10.7s 0.2s ease-in-out infinite alternate; height: 57vh; }
+.ps2-tower:nth-child(25) { left: 74.3%; animation: ps2-rise 12.5s 2.4s ease-in-out infinite alternate; height: 76vh; }
+.ps2-tower:nth-child(26) { left: 77.5%; animation: ps2-rise  7.0s 1.0s ease-in-out infinite alternate; height: 20vh; }
+.ps2-tower:nth-child(27) { left: 80.0%; animation: ps2-rise 13.2s 0.6s ease-in-out infinite alternate; height: 80vh; }
+.ps2-tower:nth-child(28) { left: 83.8%; animation: ps2-rise  9.8s 1.3s ease-in-out infinite alternate; height: 46vh; }
+.ps2-tower:nth-child(29) { left: 87.5%; animation: ps2-rise 11.9s 2.0s ease-in-out infinite alternate; height: 71vh; }
+.ps2-tower:nth-child(30) { left: 91.0%; animation: ps2-rise  8.6s 0.7s ease-in-out infinite alternate; height: 37vh; }
+.ps2-tower:nth-child(31) { left: 94.5%; animation: ps2-rise 10.3s 1.6s ease-in-out infinite alternate; height: 54vh; }
+.ps2-tower:nth-child(32) { left: 97.8%; animation: ps2-rise 14.0s 0.9s ease-in-out infinite alternate; height: 83vh; }
+
+@keyframes ps2-rise {
+  0%   { transform: scaleY(0.05); opacity: 0.2; filter: blur(0px); }
+  40%  { opacity: 1;              filter: blur(0px); }
+  100% { transform: scaleY(1);    opacity: 0.85; filter: blur(0.5px); }
+}
+
+/* ══════════════════════════════════════════════════
+   STAR STREAKS — warp-speed particles
+   ══════════════════════════════════════════════════ */
+.ps2-star {
+  position: fixed;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--ps2-flare), var(--ps2-white));
+  z-index: 3;
+  pointer-events: none;
+  border-radius: 9999px;
+  transform-origin: left center;
+}
+
+/* 20 streaks */
+.ps2-star:nth-child(1)  { top:  4%; left:  0%; width: 120px; animation: ps2-streak  3.8s 0.0s linear infinite; opacity: 0.7; }
+.ps2-star:nth-child(2)  { top: 11%; left: 30%; width:  80px; animation: ps2-streak  5.1s 0.6s linear infinite; opacity: 0.5; }
+.ps2-star:nth-child(3)  { top: 19%; left: 60%; width: 200px; animation: ps2-streak  2.9s 1.2s linear infinite; opacity: 0.8; }
+.ps2-star:nth-child(4)  { top: 27%; left: 10%; width:  60px; animation: ps2-streak  6.4s 0.3s linear infinite; opacity: 0.4; }
+.ps2-star:nth-child(5)  { top: 33%; left: 80%; width: 140px; animation: ps2-streak  4.2s 1.8s linear infinite; opacity: 0.6; }
+.ps2-star:nth-child(6)  { top: 42%; left: 45%; width:  90px; animation: ps2-streak  3.5s 0.9s linear infinite; opacity: 0.5; }
+.ps2-star:nth-child(7)  { top: 50%; left: 20%; width: 180px; animation: ps2-streak  2.4s 2.2s linear infinite; opacity: 0.9; }
+.ps2-star:nth-child(8)  { top: 56%; left: 70%; width:  70px; animation: ps2-streak  5.8s 0.1s linear infinite; opacity: 0.4; }
+.ps2-star:nth-child(9)  { top: 63%; left:  5%; width: 110px; animation: ps2-streak  4.7s 1.5s linear infinite; opacity: 0.6; }
+.ps2-star:nth-child(10) { top: 71%; left: 55%; width: 160px; animation: ps2-streak  3.1s 0.7s linear infinite; opacity: 0.7; }
+.ps2-star:nth-child(11) { top:  8%; left: 85%; width:  95px; animation: ps2-streak  4.9s 2.5s linear infinite; opacity: 0.5; }
+.ps2-star:nth-child(12) { top: 16%; left: 40%; width: 130px; animation: ps2-streak  3.6s 1.1s linear infinite; opacity: 0.6; }
+.ps2-star:nth-child(13) { top: 23%; left: 15%; width:  55px; animation: ps2-streak  7.0s 0.4s linear infinite; opacity: 0.3; }
+.ps2-star:nth-child(14) { top: 38%; left: 90%; width: 190px; animation: ps2-streak  2.7s 1.9s linear infinite; opacity: 0.8; }
+.ps2-star:nth-child(15) { top: 47%; left: 35%; width: 100px; animation: ps2-streak  5.3s 0.2s linear infinite; opacity: 0.5; }
+.ps2-star:nth-child(16) { top: 58%; left: 65%; width:  75px; animation: ps2-streak  4.1s 2.8s linear infinite; opacity: 0.4; }
+.ps2-star:nth-child(17) { top: 67%; left: 25%; width: 150px; animation: ps2-streak  3.3s 1.3s linear infinite; opacity: 0.7; }
+.ps2-star:nth-child(18) { top: 75%; left: 50%; width:  85px; animation: ps2-streak  5.6s 0.8s linear infinite; opacity: 0.5; }
+.ps2-star:nth-child(19) { top: 14%; left: 75%; width: 115px; animation: ps2-streak  4.4s 2.1s linear infinite; opacity: 0.6; }
+.ps2-star:nth-child(20) { top: 82%; left:  8%; width: 170px; animation: ps2-streak  2.2s 1.7s linear infinite; opacity: 0.8; }
+
+@keyframes ps2-streak {
+  0%   { transform: translateX(-100%) scaleX(0); opacity: 0; }
+  10%  { opacity: 1; }
+  80%  { opacity: 0.8; }
+  100% { transform: translateX(120vw) scaleX(1); opacity: 0; }
+}
+
+/* ══════════════════════════════════════════════════
+   FLOATING PARTICLES — tiny orbs drifting up
+   ══════════════════════════════════════════════════ */
+.ps2-particle {
+  position: fixed;
+  border-radius: 50%;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(circle, var(--ps2-white) 0%, var(--ps2-glow) 50%, transparent 100%);
+}
+
+.ps2-particle:nth-child(1)  { width: 3px;  height: 3px;  left:  6%;  bottom: 5%;  animation: ps2-float 14s 0.0s ease-in-out infinite; opacity: 0.9; }
+.ps2-particle:nth-child(2)  { width: 2px;  height: 2px;  left: 14%;  bottom: 12%; animation: ps2-float 18s 1.5s ease-in-out infinite; opacity: 0.6; }
+.ps2-particle:nth-child(3)  { width: 4px;  height: 4px;  left: 23%;  bottom: 8%;  animation: ps2-float 11s 3.0s ease-in-out infinite; opacity: 0.8; }
+.ps2-particle:nth-child(4)  { width: 2px;  height: 2px;  left: 31%;  bottom: 2%;  animation: ps2-float 20s 0.8s ease-in-out infinite; opacity: 0.5; }
+.ps2-particle:nth-child(5)  { width: 3px;  height: 3px;  left: 40%;  bottom: 15%; animation: ps2-float 13s 2.2s ease-in-out infinite; opacity: 0.7; }
+.ps2-particle:nth-child(6)  { width: 5px;  height: 5px;  left: 48%;  bottom: 6%;  animation: ps2-float 16s 4.1s ease-in-out infinite; opacity: 0.85; }
+.ps2-particle:nth-child(7)  { width: 2px;  height: 2px;  left: 57%;  bottom: 10%; animation: ps2-float 22s 1.0s ease-in-out infinite; opacity: 0.4; }
+.ps2-particle:nth-child(8)  { width: 3px;  height: 3px;  left: 65%;  bottom: 4%;  animation: ps2-float 15s 3.5s ease-in-out infinite; opacity: 0.75; }
+.ps2-particle:nth-child(9)  { width: 4px;  height: 4px;  left: 73%;  bottom: 9%;  animation: ps2-float 12s 0.4s ease-in-out infinite; opacity: 0.9; }
+.ps2-particle:nth-child(10) { width: 2px;  height: 2px;  left: 81%;  bottom: 3%;  animation: ps2-float 19s 2.8s ease-in-out infinite; opacity: 0.5; }
+.ps2-particle:nth-child(11) { width: 3px;  height: 3px;  left: 89%;  bottom: 13%; animation: ps2-float 17s 1.7s ease-in-out infinite; opacity: 0.65; }
+.ps2-particle:nth-child(12) { width: 2px;  height: 2px;  left: 95%;  bottom: 7%;  animation: ps2-float 21s 0.2s ease-in-out infinite; opacity: 0.45; }
+
+@keyframes ps2-float {
+  0%   { transform: translateY(0)    translateX(0)   scale(1);    opacity: 0; }
+  5%   { opacity: 1; }
+  50%  { transform: translateY(-45vh) translateX(15px) scale(1.3); }
+  90%  { opacity: 0.8; }
+  100% { transform: translateY(-95vh) translateX(-8px) scale(0.4); opacity: 0; }
+}
+
+/* ══════════════════════════════════════════════════
+   LENS FLARE PULSE — centered glow bloom
+   ══════════════════════════════════════════════════ */
+.ps2-flare {
+  position: fixed;
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120vw;
+  height: 80vh;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 60% 50% at 50% 100%,
+    rgba(77,143,255,0.35) 0%,
+    rgba(26,79,255,0.15) 35%,
+    transparent 70%);
+  animation: ps2-pulse 6s ease-in-out infinite alternate;
+}
+
+@keyframes ps2-pulse {
+  0%   { opacity: 0.6; transform: translateX(-50%) scaleY(0.85); }
+  50%  { opacity: 1.0; transform: translateX(-50%) scaleY(1.1); }
+  100% { opacity: 0.7; transform: translateX(-50%) scaleY(0.95); }
+}
+
+/* ══════════════════════════════════════════════════
+   SCANLINES — subtle CRT feel
+   ══════════════════════════════════════════════════ */
+.ps2-scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,20,0.06) 3px,
+    rgba(0,0,20,0.06) 4px
+  );
+  animation: ps2-scan 8s linear infinite;
+}
+
+@keyframes ps2-scan {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 800px; }
+}
+
+/* ══════════════════════════════════════════════════
+   CONTENT LIFT — make sure page content sits above
+   ══════════════════════════════════════════════════ */
+.ps2-bg > *:not(.ps2-tower):not(.ps2-star):not(.ps2-particle):not(.ps2-flare):not(.ps2-scanlines):not(.ps2-bg::before):not(.ps2-bg::after) {
+  position: relative;
+  z-index: 10;
+}
