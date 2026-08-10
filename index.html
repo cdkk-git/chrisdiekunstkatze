@@ -1,210 +1,272 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>IE4 + IE8 + NetFront Compatible Demo</title>
-
-<!-- Target browsers: Internet Explorer 4, Internet Explorer 8, and
-     PSP NetFront. CSS is restricted to the CSS1 subset IE4 supports:
-     no CSS2/CSS3 selectors, no flexbox/grid, no border-radius,
-     box-shadow, gradients, rgba()/hsla(), opacity, @font-face, or
-     transitions. Font sizes use pt, not px or em, since IE4's px
-     handling is unreliable. Table-based layout replaces floats and
-     positioning, since IE4 barely supports float and NetFront
-     handles it inconsistently. Fixed width of 460px keeps the page
-     inside the PSP's 480x272 screen with margin to spare, and reads
-     fine as a simple fixed-width column in IE4/IE8 on desktop.
-     Full restriction list: restrictions.md -->
+<title>Chres' Castle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <style type="text/css">
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-    color: #000000;
+body {
+    background-color: #d6d6d6;
+    color: #222222;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 9pt;
-  }
-  table.page {
-    width: 460px;
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: collapse;
-  }
-  td.header {
-    background-color: #003366;
-    color: #ffffff;
-    padding: 8px;
-    font-weight: bold;
-    font-size: 13pt;
-  }
-  td.nav {
-    background-color: #dddddd;
-    padding: 6px;
-    font-size: 8pt;
-  }
-  td.content {
-    padding: 10px;
-    border: 1px solid #999999;
-  }
-  td.footer {
-    background-color: #eeeeee;
-    padding: 6px;
-    font-size: 7pt;
-    text-align: center;
-    color: #555555;
-  }
-  a {
-    color: #0000cc;
-  }
-  a:hover {
-    color: #cc0000;
-  }
-  .box {
-    border: 1px solid #999999;
-    background-color: #f5f5f5;
-    padding: 6px;
-    margin-bottom: 8px;
-  }
-  .limitlist {
     margin: 0;
-    padding-left: 18px;
-  }
+    padding: 0;
+}
+a {
+    color: #003399;
+    text-decoration: underline;
+}
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+}
+.site {
+    width: 460px;
+    background-color: #ffffff;
+    border: 1px solid #777777;
+}
+.top {
+    background-color: #17365d;
+    color: #ffffff;
+    padding: 6pt;
+}
+.logo {
+    font-size: 18pt;
+    font-weight: bold;
+    letter-spacing: 1pt;
+}
+.tagline {
+    font-size: 8pt;
+}
+.menu {
+    background-color: #eeeeee;
+    border-bottom: 1px solid #999999;
+    padding: 4pt;
+    text-align: center;
+}
+.menu a {
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 4pt;
+    margin-right: 4pt;
+}
+.main {
+    padding: 6pt;
+}
+.title {
+    color: #17365d;
+    font-size: 14pt;
+    font-weight: bold;
+    border-bottom: 1px solid #aaaaaa;
+    padding-bottom: 3pt;
+}
+.posttitle {
+    color: #990000;
+    font-size: 11pt;
+    font-weight: bold;
+}
+.date {
+    color: #666666;
+    font-size: 8pt;
+}
+.box {
+    border: 1px solid #aaaaaa;
+    background-color: #f5f5f5;
+    padding: 5pt;
+}
+.side {
+    width: 105px;
+    vertical-align: top;
+    padding-left: 6pt;
+}
+.content {
+    width: 325px;
+    vertical-align: top;
+}
+.small {
+    font-size: 8pt;
+}
+.footer {
+    background-color: #eeeeee;
+    border-top: 1px solid #999999;
+    color: #555555;
+    padding: 5pt;
+    text-align: center;
+}
+hr {
+    color: #aaaaaa;
+    height: 1px;
+}
+input {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8pt;
+}
 </style>
 </head>
 
 <body>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" valign="top">
 
-<table class="page" cellpadding="0" cellspacing="0" border="0">
+<table class="site" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td class="top">
+<div class="logo">Chres' Castle </div>
+<div class="tagline">@cdkk.mp3 &amp; indie blog channel, wisdom, book quotes</div>
+</td>
+</tr>
 
-  <!-- Header row -->
-  <tr>
-    <td class="header">IE4 + IE8 + NetFront Compatible Demo</td>
-  </tr>
+<tr>
+<td class="menu">
+<a href="index.html">HOME</a> |
+<a href="archive.html">ARCHIVE</a> |
+<a href="games.html">WISDOM</a> |
+<a href="music.html">BOOK QUOTES</a> |
+<a href="about.html">ABOUT</a>
+</td>
+</tr>
 
-  <!-- Nav row: plain links, no JS menus, no hover effects beyond <a> -->
-  <tr>
-    <td class="nav">
-      <a href="#layout">Layout</a> |
-      <a href="#images">Images</a> |
-      <a href="#forms">Forms</a> |
-      <a href="#limits">Limitations</a>
-    </td>
-  </tr>
+<tr>
+<td class="main">
 
-  <!-- Main content -->
-  <tr>
-    <td class="content">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
 
-      <a name="layout"></a>
-      <h2 style="font-size:14px;">Table-Based Layout</h2>
-      <p>This entire page is structured with an HTML table instead of
-      CSS floats, flexbox, or grid, since PSP NetFront handles float-based
-      layout unreliably and modern layout modules do not exist in either
-      target browser.</p>
+<td class="content">
 
-      <table width="100%" cellpadding="4" cellspacing="0" border="0">
-        <tr>
-          <td width="50%" valign="top" class="box">
-            <b>Column A</b><br>
-            Two-column layouts here use table cells, not
-            <code>display: flex</code> or floated divs.
-          </td>
-          <td width="50%" valign="top" class="box">
-            <b>Column B</b><br>
-            Percentage widths on table cells work consistently
-            across both engines.
-          </td>
-        </tr>
-      </table>
+<div class="title">NEW OFFICIAL PAGE DEBUTS!</div>
 
-      <a name="images"></a>
-      <h2 style="font-size:14px;">Images</h2>
-      <p>Only GIF and JPG are used below. PNG alpha transparency is
-      avoided since it is buggy in IE8 and unreliable in NetFront.</p>
-      <p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Example.jpg/120px-Example.jpg" width="120" height="90" alt="Sample JPG image" border="1">
-      </p>
+<p class="posttitle">Welcome to the new interface.</p>
+<div class="date">Posted: August 8, 2026 &nbsp; | &nbsp; New Changes and Compatibility Updates</div>
 
-      <a name="forms"></a>
-      <h2 style="font-size:14px;">Forms (No JavaScript Required)</h2>
-      <p>The form below submits as a normal full-page request. There is
-      no AJAX, no fetch, and no client-side validation, since early
-      NetFront firmware has no XMLHttpRequest and neither target should
-      be assumed to run JavaScript at all.</p>
-      <form action="#" method="get">
-        Name:
-        <input type="text" name="username" size="20">
-        <br><br>
-        <input type="submit" value="Submit">
-      </form>
+<p>
+Today marks the launch of the new official page for Chres' Castle. 
+This update brings a fresh look and improved navigation, 
+making it easier for visitors to explore our content. We have also ensured 
+that the site is compatible with older browsers 
+and devices, providing a seamless experience for all users.
+</p>
 
-      <a name="limits"></a>
-      <h2 style="font-size:14px;">Limitations Followed on This Page</h2>
+<p>
+We are experimenting with compatibility and accessibility features to ensure
+that our content is available to a wider audience. We welcome feedback and
+suggestions for further improvements. These experiments are focuced on restrictions
+within the HTML 4.01 framework, and we are committed to maintaining the integrity of the
+new design while enhancing usability.
+</p>
 
-      <div class="box">
-        <b>Layout</b>
-        <ul class="limitlist">
-          <li>Table-based layout only; no floats, flexbox, or grid</li>
-          <li>Fixed 460px width to fit the PSP's 480x272 screen</li>
-          <li>No CSS2/CSS3 selectors (:nth-child, :not, child/sibling combinators, attribute selectors)</li>
-          <li>Standards-mode doctype to avoid IE8 quirks-mode box model bugs</li>
-        </ul>
-      </div>
+<p>
+We are also integrating restrictions within Internet Explorer 8 and the Netscape 4.0
+largely provided by the PSP NetFront browser for experimental purposes. This will allow 
+us to test how our content performs on older platforms and ensure that our site remains accessible.
+</p>
 
-      <div class="box">
-        <b>Visual styling</b>
-        <ul class="limitlist">
-          <li>No border-radius, box-shadow, or gradients</li>
-          <li>No rgba()/hsla() colors; hex colors only</li>
-          <li>No CSS opacity or IE alpha filter (unsupported by NetFront and IE4)</li>
-          <li>No @font-face web fonts; system fonts only</li>
-          <li>No CSS transitions or animations</li>
-          <li>Font sizes in pt, not px/em, for IE4 reliability</li>
-        </ul>
-      </div>
+<p>
+This blog will hold a collection of posts, articles, and updates within my 
+personal interests, including independent findings, herbology, and book texts.
+</p>
 
-      <div class="box">
-        <b>Images</b>
-        <ul class="limitlist">
-          <li>GIF/JPG only; no PNG alpha transparency</li>
-          <li>No SVG</li>
-        </ul>
-      </div>
 
-      <div class="box">
-        <b>JavaScript</b>
-        <ul class="limitlist">
-          <li>Zero JavaScript used on this page</li>
-          <li>No AJAX/fetch; form uses a standard full-page GET submit</li>
-        </ul>
-      </div>
+<div class="box">
+<b>THIS WEEK'S FEATURE</b><br>
+Week Features will come out next week!<br>
+<a href="psp.html">Read the article &gt;&gt;</a>
+</div>
 
-      <div class="box">
-        <b>HTML</b>
-        <ul class="limitlist">
-          <li>HTML 4.01 Transitional doctype</li>
-          <li>No HTML5 semantic tags (header, nav, section, etc.)</li>
-          <li>No &lt;video&gt;, &lt;audio&gt;, or &lt;canvas&gt;</li>
-        </ul>
-      </div>
+<br>
 
-      <p style="font-size:8pt; color:#555555;">
-        Full restriction reference: see <b>restrictions.md</b>, included
-        alongside this file.
-      </p>
+<div class="posttitle">Compatibility and Website Goals</div>
+<div class="date">Posted: August 10, 2026</div>
 
-    </td>
-  </tr>
+<ol>
+<li>Experimental Restrictions - IE4</li>
+<li>Compatibility Test - Nintendo DSi Browser</li>
+<li>Structured Formats for Sections</li>
+<li>Web Accessibility Standards</li>
+<li>Designated Website Mascot</li>
+</ol>
 
-  <!-- Footer row -->
-  <tr>
-    <td class="footer">
-      Rendered without CSS2/CSS3, JavaScript, or HTML5 &mdash; compatible
-      with Internet Explorer 4, Internet Explorer 8, and PSP NetFront.
-    </td>
-  </tr>
 
+<div class="posttitle">Current Quote</div>
+<div class="date">Posted: August 10, 2026</div>
+
+<p>
+<b>"We are on the lookout for beauty that surprises and sensations
+that are unexpected. We are the ambassadors of amazement."</b>
+Mary Whyte. An Artist's Life Unlocking Creative Expression. Hardcover ed. 
+Columbia, South Carolina 29208: University of South Carolina Press, 2025. 
+ISBN: 978-1-64336-540-4. Chapter 1, "Spring Creating a Life of Discovery," p. 19. 
+Cover Designer: Lauren Michelle Smith. Cover Art: Mary Whyte, Sketchbook, 2024, 
+watercolor on paper, 9 x 7 inches.
+</p>
+
+<p>
+<a href="music.html">Music Playlist Coming Soon &gt;&gt;</a>
+</p>
+
+</td>
+
+<td class="side">
+
+<div class="box">
+<b>ABOUT ME</b>
+<p class="small">
+Hey! I'm Chres.<br><br>
+I write about my research, independent findings, music and random things.
+</p>
+<a href="about.html">more...</a>
+</div>
+
+<br>
+
+<div class="box">
+<b>LINKS</b>
+<p class="small">
+<a href="https://www.youtube.com/">YouTube</a><br>
+<a href="https://archive.org/">Internet Archive</a><br>
+<a href="https://www.wikipedia.org/">Wikipedia</a><br>
+<a href="https://www.blogger.com/">Blogger</a>
+</p>
+</div>
+
+<br>
+
+<div class="box">
+<b>SEARCH</b>
+<form action="search.html" method="get">
+<input type="text" name="q" size="10">
+<br>
+<input type="submit" value="Search">
+</form>
+</div>
+
+<br>
+
+<div class="box">
+<b>STATUS UPDATE</b>
+<p class="small">
+Compatibility Testing for weaker browsers ongoing.<br>
+</div>
+
+</td>
+
+</tr>
 </table>
 
+</td>
+</tr>
+
+<tr>
+<td class="footer">
+Best viewed at 1024x768 &nbsp; | &nbsp; HTML 4.01 &nbsp; | &nbsp;
+No JavaScript &nbsp; | &nbsp; � 2026 CDKK
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
 </body>
 </html>

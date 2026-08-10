@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>IE4 + IE8 + NetFront Compatible Demo</title>
+
+<!-- Target browsers: Internet Explorer 4, Internet Explorer 8, and
+     PSP NetFront. CSS is restricted to the CSS1 subset IE4 supports:
+     no CSS2/CSS3 selectors, no flexbox/grid, no border-radius,
+     box-shadow, gradients, rgba()/hsla(), opacity, @font-face, or
+     transitions. Font sizes use pt, not px or em, since IE4's px
+     handling is unreliable. Table-based layout replaces floats and
+     positioning, since IE4 barely supports float and NetFront
+     handles it inconsistently. Fixed width of 460px keeps the page
+     inside the PSP's 480x272 screen with margin to spare, and reads
+     fine as a simple fixed-width column in IE4/IE8 on desktop.
+     Full restriction list: restrictions.md -->
+<style type="text/css">
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+  }
+  table.page {
+    width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+  }
+  td.header {
+    background-color: #003366;
+    color: #ffffff;
+    padding: 8px;
+    font-weight: bold;
+    font-size: 13pt;
+  }
+  td.nav {
+    background-color: #dddddd;
+    padding: 6px;
+    font-size: 8pt;
+  }
+  td.content {
+    padding: 10px;
+    border: 1px solid #999999;
+  }
+  td.footer {
+    background-color: #eeeeee;
+    padding: 6px;
+    font-size: 7pt;
+    text-align: center;
+    color: #555555;
+  }
+  a {
+    color: #0000cc;
+  }
+  a:hover {
+    color: #cc0000;
+  }
+  .box {
+    border: 1px solid #999999;
+    background-color: #f5f5f5;
+    padding: 6px;
+    margin-bottom: 8px;
+  }
+  .limitlist {
+    margin: 0;
+    padding-left: 18px;
+  }
+</style>
+</head>
+
+<body>
+
+<table class="page" cellpadding="0" cellspacing="0" border="0">
+
+  <!-- Header row -->
+  <tr>
+    <td class="header">IE4 + IE8 + NetFront Compatible Demo</td>
+  </tr>
+
+  <!-- Nav row: plain links, no JS menus, no hover effects beyond <a> -->
+  <tr>
+    <td class="nav">
+      <a href="#layout">Layout</a> |
+      <a href="#images">Images</a> |
+      <a href="#forms">Forms</a> |
+      <a href="#limits">Limitations</a>
+    </td>
+  </tr>
+
+  <!-- Main content -->
+  <tr>
+    <td class="content">
+
+      <a name="layout"></a>
+      <h2 style="font-size:14px;">Table-Based Layout</h2>
+      <p>This entire page is structured with an HTML table instead of
+      CSS floats, flexbox, or grid, since PSP NetFront handles float-based
+      layout unreliably and modern layout modules do not exist in either
+      target browser.</p>
+
+      <table width="100%" cellpadding="4" cellspacing="0" border="0">
+        <tr>
+          <td width="50%" valign="top" class="box">
+            <b>Column A</b><br>
+            Two-column layouts here use table cells, not
+            <code>display: flex</code> or floated divs.
+          </td>
+          <td width="50%" valign="top" class="box">
+            <b>Column B</b><br>
+            Percentage widths on table cells work consistently
+            across both engines.
+          </td>
+        </tr>
+      </table>
+
+      <a name="images"></a>
+      <h2 style="font-size:14px;">Images</h2>
+      <p>Only GIF and JPG are used below. PNG alpha transparency is
+      avoided since it is buggy in IE8 and unreliable in NetFront.</p>
+      <p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Example.jpg/120px-Example.jpg" width="120" height="90" alt="Sample JPG image" border="1">
+      </p>
+
+      <a name="forms"></a>
+      <h2 style="font-size:14px;">Forms (No JavaScript Required)</h2>
+      <p>The form below submits as a normal full-page request. There is
+      no AJAX, no fetch, and no client-side validation, since early
+      NetFront firmware has no XMLHttpRequest and neither target should
+      be assumed to run JavaScript at all.</p>
+      <form action="#" method="get">
+        Name:
+        <input type="text" name="username" size="20">
+        <br><br>
+        <input type="submit" value="Submit">
+      </form>
+
+      <a name="limits"></a>
+      <h2 style="font-size:14px;">Limitations Followed on This Page</h2>
+
+      <div class="box">
+        <b>Layout</b>
+        <ul class="limitlist">
+          <li>Table-based layout only; no floats, flexbox, or grid</li>
+          <li>Fixed 460px width to fit the PSP's 480x272 screen</li>
+          <li>No CSS2/CSS3 selectors (:nth-child, :not, child/sibling combinators, attribute selectors)</li>
+          <li>Standards-mode doctype to avoid IE8 quirks-mode box model bugs</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <b>Visual styling</b>
+        <ul class="limitlist">
+          <li>No border-radius, box-shadow, or gradients</li>
+          <li>No rgba()/hsla() colors; hex colors only</li>
+          <li>No CSS opacity or IE alpha filter (unsupported by NetFront and IE4)</li>
+          <li>No @font-face web fonts; system fonts only</li>
+          <li>No CSS transitions or animations</li>
+          <li>Font sizes in pt, not px/em, for IE4 reliability</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <b>Images</b>
+        <ul class="limitlist">
+          <li>GIF/JPG only; no PNG alpha transparency</li>
+          <li>No SVG</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <b>JavaScript</b>
+        <ul class="limitlist">
+          <li>Zero JavaScript used on this page</li>
+          <li>No AJAX/fetch; form uses a standard full-page GET submit</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <b>HTML</b>
+        <ul class="limitlist">
+          <li>HTML 4.01 Transitional doctype</li>
+          <li>No HTML5 semantic tags (header, nav, section, etc.)</li>
+          <li>No &lt;video&gt;, &lt;audio&gt;, or &lt;canvas&gt;</li>
+        </ul>
+      </div>
+
+      <p style="font-size:8pt; color:#555555;">
+        Full restriction reference: see <b>restrictions.md</b>, included
+        alongside this file.
+      </p>
+
+    </td>
+  </tr>
+
+  <!-- Footer row -->
+  <tr>
+    <td class="footer">
+      Rendered without CSS2/CSS3, JavaScript, or HTML5 &mdash; compatible
+      with Internet Explorer 4, Internet Explorer 8, and PSP NetFront.
+    </td>
+  </tr>
+
+</table>
+
+</body>
+</html>
