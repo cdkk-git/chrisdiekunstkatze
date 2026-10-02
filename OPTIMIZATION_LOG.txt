@@ -1,0 +1,144 @@
+CHRES' CASTLE - OPTIMIZATION LOG
+Round 2: bigger cursor + 103 further optimizations
+Applies to index.html, about.html, lionsgate.html, template.html (restrictions.html untouched on purpose).
+Legacy note: new CSS sits in @media blocks and the script feature-detects, so IE4/IE8/PSP NetFront keep the original layout.
+
+== BIGGER CURSOR (13) ==
+  1. Main cursor enlarged 3x (16px -> 48px) on desktop/mouse devices.
+  2. Link, menu and button cursor enlarged to match (the original two cursor images were identical, so one image is now shared).
+  3. Enlarged with nearest-neighbour scaling so the pixel art stays crisp, not blurry.
+  4. Hi-DPI screens get a 96px cursor via image-set() at 2x.
+  5. Added -webkit-image-set() declaration for older WebKit/Blink browsers.
+  6. Screens 1600px and wider get an even bigger cursor (64px, 128px at 2x).
+  7. Custom cursor applies only to pointer:fine devices (mouse/trackpad); touch screens are untouched.
+  8. Text fields keep the normal I-beam cursor so typing position stays clear.
+  9. Cursor hotspot kept at 0 0 so the click point is still the arrow tip.
+ 10. Cursor images stored once in CSS custom properties instead of repeating the data in every rule.
+ 11. Cursor PNGs palette-quantised (~1 KB each).
+ 12. Fallback keywords (auto / pointer) kept after every cursor declaration.
+ 13. Cursor also applied to labels, buttons and submit inputs, not just links.
+
+== HEAD / SEO / SHARING (24) ==
+ 14. Added meta description to every page.
+ 15. Added theme-color so mobile browser bars match the site.
+ 16. Added color-scheme: light so browsers don't auto-darken the themed colours.
+ 17. Added meta author.
+ 18. Added meta robots (template.html is noindex,nofollow so the blank template never gets indexed).
+ 19. Added referrer policy strict-origin-when-cross-origin.
+ 20. Added canonical link on indexable pages.
+ 21. Added og:title.
+ 22. Added og:description.
+ 23. Added og:type.
+ 24. Added og:site_name.
+ 25. Added og:url.
+ 26. Added twitter:card.
+ 27. Embedded favicon built from the mascot (no extra file request).
+ 28. Embedded apple-touch-icon (180px, pixel-crisp).
+ 29. Added format-detection telephone=no so numbers aren't auto-linked on phones.
+ 30. Added apple-mobile-web-app-title.
+ 31. Added X-UA-Compatible IE=edge so IE8 uses its best rendering mode.
+ 32. about.html and lionsgate.html charset changed from windows-1252 to UTF-8 (files contain only ASCII, so nothing changes visually).
+ 33. Viewport now includes viewport-fit=cover for notched phones.
+ 34. Index page <title> made descriptive for search results.
+ 35. Created sitemap.xml (index, about, lionsgate).
+ 36. robots.txt Sitemap line now points at the real domain (it pointed at the github.io address).
+ 37. Added .nojekyll so GitHub Pages skips the Jekyll build.
+
+== ACCESSIBILITY (28) ==
+ 38. Added a 'Skip to main content' link (hidden until keyboard-focused).
+ 39. Content cell gets id=content and tabindex=-1 as the skip target.
+ 40. role=main on the content area.
+ 41. role=navigation with aria-label on the menu.
+ 42. role=complementary on the sidebar.
+ 43. role=contentinfo on the footer.
+ 44. role=presentation on all layout tables so screen readers don't announce them as data tables.
+ 45. aria-current=page on the current menu link.
+ 46. Visible :focus-visible outlines (3px, offset) on links, inputs and buttons.
+ 47. Focus colour chosen per theme for contrast (dark red on the cream theme, navy on the grey theme).
+ 48. Removed the focus ring from the programmatic skip target only.
+ 49. 44px minimum touch targets for menu links, sidebar links, search input and button on touch screens.
+ 50. Search input has an aria-label.
+ 51. Search input is type=search (clear button and mobile search keyboard).
+ 52. Search form has role=search.
+ 53. Decorative star GIFs now alt="" instead of alt="*" (screen readers no longer read 'asterisk').
+ 54. Page titles get role=heading aria-level=1.
+ 55. Post titles get role=heading aria-level=2.
+ 56. Sparkle layer and each sparkle are aria-hidden with empty alt.
+ 57. Link colour inside tan boxes darkened (was 4.47:1, just under the WCAG AA 4.5:1 minimum).
+ 58. prefers-contrast:more adds thicker borders and darker text/link colours.
+ 59. forced-colors (Windows High Contrast) gets visible borders and hides sparkles.
+ 60. prefers-reduced-motion disables smooth scrolling and link transitions in CSS.
+ 61. prefers-reduced-motion is also checked live in the sparkle script.
+ 62. Text selection colour themed to match the site.
+ 63. Link underlines get a consistent offset and thickness; thicker on hover.
+ 64. :active colour feedback on links.
+ 65. Skip link themed to match the site and meets contrast.
+
+== PERFORMANCE / RENDERING / CSS (33) ==
+ 66. @font-face gets font-display:swap.
+ 67. All embedded images get decoding=async.
+ 68. Header mascot gets fetchpriority=high.
+ 69. Removed the permanent will-change from sparkles (it forced a GPU layer per sparkle).
+ 70. Sparkle layer uses contain:strict.
+ 71. Each sparkle uses contain:layout paint style.
+ 72. Removed the now-unused sparkle-pop keyframes.
+ 73. Removed the old per-sparkle CSS rule (replaced by the new one).
+ 74. Minified the responsive CSS block added last round.
+ 75. Sparkle motion uses transform only (translate3d), so it never triggers layout.
+ 76. html background set to the theme colour so iOS overscroll/rubber-banding doesn't flash white.
+ 77. Body min-height uses 100dvh so mobile address-bar changes don't leave gaps.
+ 78. Safe-area insets keep content clear of notches and rounded corners.
+ 79. Scrollbar coloured to match the theme (scrollbar-color).
+ 80. accent-color on form controls.
+ 81. Themed tap-highlight colour on mobile.
+ 82. touch-action:manipulation on links/buttons removes the tap delay.
+ 83. text-wrap:pretty on paragraphs avoids stranded last words.
+ 84. text-wrap:balance on headings.
+ 85. hyphens:auto in the content column for narrow screens.
+ 86. overflow-wrap:anywhere so long ISBNs/URLs can't force sideways scrolling.
+ 87. image-rendering crisp-edges/pixelated on headings and images.
+ 88. Smooth anchor scrolling.
+ 89. scroll-padding-top so anchor targets aren't flush against the top.
+ 90. Short colour transition on link hover.
+ 91. Ordered lists use padding-inline-start (RTL-safe) with a sensible indent.
+ 92. Images get border:0 and height:auto, keeping aspect ratio (prevents layout shift).
+ 93. New print stylesheet: white background, no menu/sidebar/footer/sparkles.
+ 94. @page margins set for printing.
+ 95. Printed pages show link URLs after each link.
+ 96. Extra rules for very small phones (<=360px wide).
+ 97. Compact header/padding for landscape phones.
+ 98. Favicon and apple icon palette-quantised to cut ~40% of their size.
+
+== SPARKLE SCRIPT (index.html) (15) ==
+ 99. Mouse moves are batched with requestAnimationFrame (one calculation per frame instead of per event).
+100. One preloaded sparkle image is cloned instead of re-assigning the data URI on every sparkle.
+101. Live sparkles capped at 48.
+102. Cleanup uses the animationend event instead of a setTimeout per sparkle.
+103. Sparkles pause when the tab is hidden.
+104. State resets on visibilitychange so no phantom burst appears on return.
+105. Respects prefers-reduced-motion changes live.
+106. Script exits entirely on touch/coarse-pointer devices.
+107. Sparkles live in one dedicated fixed #sparkle-layer instead of being appended to <body>.
+108. Script wrapped in a strict-mode IIFE.
+109. Time delta clamped to 100 ms to prevent huge jumps after lag.
+110. Uses Math.hypot for distance.
+111. Sparkle size scales via CSS (24px normally, 36px on 1600px+ screens, up from 16px).
+112. Feature detection (addEventListener, createElement, requestAnimationFrame, matchMedia) kept so IE4/IE8/NetFront simply skip the script.
+113. Single passive mousemove listener.
+
+== MAINTENANCE / CONTENT (3) ==
+114. Fixed template.html: a comment nested inside a comment ended it early and leaked 'Copy this file to start...' text onto the page.
+115. Footer text 'Best viewed at 480x272 / 1024x768' changed to 'Fits any screen'.
+116. External links (YouTube, Archive.org, Wikipedia, Blogger) get rel=noopener noreferrer.
+
+== VERIFIED IN CHROMIUM ==
+- No horizontal scroll and no console errors on all 4 pages at 360, 390, 820, 1440 and 2560px.
+- Cursor resolves to the enlarged image-set; skip link and aria-current present.
+- Sparkle test: 48 live (cap) during shaking, 0 left after 1.5 s.
+
+== NOT CHANGED / WORTH KNOWING ==
+- Menu links to archive.html, games.html, music.html and search.html point to pages that aren't in the repo.
+- Andrew font is still embedded in every page (kept self-contained on purpose); sharing one font file would improve caching.
+- Identical star GIFs are still embedded twice on index.html.
+- Not tested in real IE4/IE8/NetFront, only Chromium.
+- Page size: index.html 50 KB -> 60 KB, mostly the icons and larger cursor images.
