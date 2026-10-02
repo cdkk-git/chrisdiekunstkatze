@@ -142,3 +142,17 @@ Legacy note: new CSS sits in @media blocks and the script feature-detects, so IE
 - Identical star GIFs are still embedded twice on index.html.
 - Not tested in real IE4/IE8/NetFront, only Chromium.
 - Page size: index.html 50 KB -> 60 KB, mostly the icons and larger cursor images.
+
+== ROUND 3: MOBILE READABILITY (screens up to 640px, excluding 480px PSP) ==
+117. Quirks-mode tables didn't inherit line-height; set explicitly so text no longer renders cramped.
+118. Body text raised to 17px with 1.5 line-height and 1em paragraph spacing.
+119. Small text (dates, sidebar, tagline, footer) raised from ~14px to 15px.
+120. Date lines darkened on the green theme for better contrast.
+121. Menu rebuilt as 44px tappable buttons; stray '|' separators hidden so links no longer wrap awkwardly.
+122. Current page shown as a filled menu button.
+123. Title stars and title image kept on one line (flex layout) instead of stacking.
+124. Heading images use smooth scaling when shrunk to fit (pixelated scaling made strokes uneven).
+125. More space above post titles and around boxes (14px padding).
+126. Box headings on their own line, sidebar links get taller tap areas.
+127. Inline <code> restyled to match the font with a light highlight.
+128. Verified no sideways scrolling at 320, 360, 390, 430, 600, 640, 700 and 1440px on all 4 pages.
