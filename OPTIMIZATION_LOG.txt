@@ -156,3 +156,28 @@ Legacy note: new CSS sits in @media blocks and the script feature-detects, so IE
 126. Box headings on their own line, sidebar links get taller tap areas.
 127. Inline <code> restyled to match the font with a light highlight.
 128. Verified no sideways scrolling at 320, 360, 390, 430, 600, 640, 700 and 1440px on all 4 pages.
+
+== ROUND 4: NEW FAVICON ==
+129. Favicon replaced with the supplied cat artwork: favicon.png, 32x32, 798 bytes (limit 800). Recovered the true 16x16 pixel grid from the 320px image, scaled 2x with nearest-neighbour and palette-quantised to 93 colours.
+130. apple-touch-icon.png (192x192) generated from the same art.
+131. Both icons are now separate cacheable files instead of base64 inline, so every page is ~10 KB smaller.
+
+== ROUND 5: INDEXED-COLOR GRAPHICS (SnesLab Graphics Format technique) ==
+132. Every embedded image re-encoded as indirect colour: palette trimmed to used colours, one shared transparent entry, alpha in a short tRNS chunk, metadata stripped, zopfli deflate.
+133. Heading, title and logo images (RGBA, 13-17 colours) are now palette PNGs: 640->396, 926->542, 1187->702, 720->468, 906->562, 517->325 bytes. Lossless.
+134. Cursor images (16, 48, 64, 96, 128 px) re-encoded: 566->333, 477->361, 492->386, 464->360, 546->438 bytes. Lossless.
+135. Header mascot: 886-colour RGBA (2976 bytes) reduced to a 108-colour palette (1067 bytes). The only lossy change; mean error under 1.5 of 255, visible difference limited to its own 30x30 area.
+136. Animated star GIF (5 frames, 280 colours overall) given per-frame trimmed palettes: 2507->2228 bytes, all frames verified identical. Used twice on index.html.
+137. Sparkle GIF was already smallest (181 bytes) and was left alone.
+138. favicon.png 798 -> 632 bytes, identical pixels (93-colour palette); now has headroom under the 800-byte limit.
+139. apple-touch-icon.png 1137 -> 1011 bytes, identical pixels.
+140. Added a NOTES section (HTML comment in every page head): technique, credit to SnesLab (CC BY 4.0), how it is applied, per-image table with before/after bytes, and why planar bitplanes are not used (they need JavaScript). template.html also carries an add-an-image checklist.
+141. Short comments next to the cursor CSS and the sparkle script point back to the notes.
+142. Verified: before/after screenshots at 390px and 1440px are identical on about and lionsgate; index and template differ only inside the 30x30 mascot; no console errors, no sideways scroll, sparkles still fire.
+    Page sizes this round (notes block included):
+    index.html      58258 ->  53941 bytes (-4317)
+    about.html      18117 ->  18150 bytes (+33)
+    lionsgate.html  18972 ->  19005 bytes (+33)
+    template.html   36670 ->  35960 bytes (-710)
+    Total pages: 132017 -> 127056 bytes. Icons: 1935 -> 1643 bytes.
+    Not reduced: the Andrew font (base64 TrueType) is not an image, so this technique does not apply.

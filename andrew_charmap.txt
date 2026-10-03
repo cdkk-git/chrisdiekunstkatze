@@ -1,0 +1,113 @@
+ANDREW FONT AS SNES TILE DATA
+Source: Andrew (embedded TrueType from the site), rasterised at 12 px, no anti-aliasing, 1 font pixel = 1 screen pixel.
+Format reference: SnesLab Graphics Format (https://sneslab.net/wiki/Graphics_Format), CC BY 4.0.
+
+FILES
+  andrew.chr          SNES 2bpp tiles, 16 bytes per 8x8 tile, rows interleaved: [r0 bp0][r0 bp1][r1 bp0][r1 bp1]... bit 7 = leftmost pixel. 116 tiles, 1856 bytes.
+  andrew_1bpp.chr     Same tiles at 1bpp (8 bytes per tile, 928 bytes). Not native to the SNES; expand to 2bpp by inserting a zero bitplane byte after each row.
+  andrew.pal          4 colours, BGR555 little-endian (0bbbbbgggggrrrrr), 8 bytes. Index 0 = transparent, 1 = ink, 2 = green, 3 = red. The glyphs use index 1 only.
+  andrew_spritesheet.png   Same tiles as an indexed PNG, 16 tiles per row, for viewing/editing.
+
+LAYOUT
+  Each character is an 8x16 cell = two stacked tiles (top rows 0-7, bottom rows 8-15). Baseline is at cell row 9 (9 rows above, 3 below).
+  Identical tiles are stored once (tile 0 = blank). Characters are NOT in tile order: use the map below.
+  advance = pixels to move the cursor after drawing (proportional font; ink is never wider than 8 px).
+
+CHARMAP   code  char  advance  top_tile  bottom_tile
+          $20   SP     6          0         0
+          $21   !     2          1         2
+          $22   "     4          3         0
+          $23   #     7          4         5
+          $24   $     6          6         7
+          $25   %     7          8         0
+          $26   &     7          9        10
+          $27   '     2         11         0
+          $28   (     4         12        13
+          $29   )     4         14        15
+          $2A   *     4         16         0
+          $2B   +     6         17         0
+          $2C   ,     2          0        18
+          $2D   -     5         19         0
+          $2E   .     2          0         2
+          $2F   /     6         20        18
+          $30   0     6         21        22
+          $31   1     4         23        24
+          $32   2     6         25        26
+          $33   3     6         27        22
+          $34   4     6         28        29
+          $35   5     6         30        22
+          $36   6     6         31        22
+          $37   7     6         32        33
+          $38   8     6         34        22
+          $39   9     6         35        22
+          $3A   :     2         36         2
+          $3B   ;     2         36        18
+          $3C   <     4         37         0
+          $3D   =     5         38         0
+          $3E   >     4         39         0
+          $3F   ?     6         40        33
+          $40   @     8         41        42
+          $41   A     6         43        44
+          $42   B     6         45        46
+          $43   C     6         47        22
+          $44   D     6         48        24
+          $45   E     6         49        26
+          $46   F     6         49         2
+          $47   G     6         50        51
+          $48   H     6         52        44
+          $49   I     4         53        24
+          $4A   J     6         54        22
+          $4B   K     6         55        44
+          $4C   L     6         56        26
+          $4D   M     6         57        44
+          $4E   N     6         58        44
+          $4F   O     6         59        22
+          $50   P     6         60         2
+          $51   Q     6         61        62
+          $52   R     6         63        44
+          $53   S     6         64        22
+          $54   T     6         65        33
+          $55   U     6         66        22
+          $56   V     6         67        33
+          $57   W     6         68        69
+          $58   X     6         70        44
+          $59   Y     6         71        33
+          $5A   Z     5         72        46
+          $5B   [     4         73        74
+          $5C   \     6         75        76
+          $5D   ]     4         77        78
+          $5E   ^     6         79         0
+          $5F   _     6          0        80
+          $60   `     3         81         0
+          $61   a     6         82        51
+          $62   b     6         83        46
+          $63   c     6         84        22
+          $64   d     6         85        51
+          $65   e     6         86        51
+          $66   f     4         87        88
+          $67   g     6         89        90
+          $68   h     6         83        44
+          $69   i     2         91         2
+          $6A   j     5         92        93
+          $6B   k     5         94        95
+          $6C   l     2         56         2
+          $6D   m     6         96        97
+          $6E   n     6         98        44
+          $6F   o     6         99        22
+          $70   p     6         98       100
+          $71   q     6         89       101
+          $72   r     6        102         2
+          $73   s     6        103        46
+          $74   t     4        104        33
+          $75   u     6        105        51
+          $76   v     6        106        33
+          $77   w     6        107        69
+          $78   x     5        108        95
+          $79   y     6        105        90
+          $7A   z     6        109        26
+          $7B   {     4        110        13
+          $7C   |     2        111        18
+          $7D   }     4        112        15
+          $7E   ~     7        113         0
+          $A0   NBSP     6          0         0
+          $A9   ©     9        114       115
