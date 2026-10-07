@@ -1,0 +1,16 @@
+SPRITES.SNP MANIFEST - 4bpp SNES planar tiles, BGR555 palettes (see tools/snes_pack.py for format)
+
+s5ac06ba    30x30     544 B  src colours 108   LOSSY(16c) err 21.66  used: index.html <img>, template.html <img>
+s651ba0c   200x33    4048 B  src colours 12    exact      err 0.00  used: index.html <img>, template.html <img>
+s24c1a8c    16x16     160 B  src colours 50    LOSSY(15c) err 10.91  used: index.html <img>
+scd3ff4d   315x26    5168 B  src colours 13    exact      err 0.00  used: index.html <img>
+s7deb624   385x26    6320 B  src colours 11    exact      err 0.00  used: index.html <img>
+s94c22f5   251x21    3120 B  src colours 10    exact      err 0.00  used: index.html <img>
+s97ca490   254x26    4144 B  src colours 12    exact      err 0.00  used: index.html <img>
+s0b854f8   125x23    1584 B  src colours 10    exact      err 0.00  used: index.html <img>
+se665e50    48x48    1200 B  src colours 29    LOSSY(15c) err 11.39  used: about.html cursor --c1, index.html cursor --c1, lionsgate.html cursor --c1, template.html cursor --c1
+sd08924f    96x96    4656 B  src colours 29    LOSSY(15c) err 11.39  used: about.html cursor --c2, index.html cursor --c2, lionsgate.html cursor --c2, template.html cursor --c2
+s2cbdd51    64x64    2096 B  src colours 29    LOSSY(15c) err 11.39  used: about.html cursor --c1, index.html cursor --c1, lionsgate.html cursor --c1, template.html cursor --c1
+s981ba35   128x128   8240 B  src colours 29    LOSSY(15c) err 11.39  used: about.html cursor --c2, index.html cursor --c2, lionsgate.html cursor --c2, template.html cursor --c2
+s7695f89    32x32     544 B  src colours 81    LOSSY(16c) err 18.44  used: favicon.png
+s31dd704   192x192  18464 B  src colours 107   LOSSY(16c) err 19.21  used: apple-touch-icon.png
