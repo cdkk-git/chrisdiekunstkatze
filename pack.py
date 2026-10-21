@@ -41,9 +41,10 @@ except ImportError:
     sys.exit("Pillow is required:  pip install pillow")
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-PAGES = ["index.html", "about.html", "lionsgate.html", "template.html"]
+PAGES = ["index.html", "art01.html", "about.html", "lionsgate.html", "template.html"]
 ICONS = ["favicon.png", "apple-touch-icon.png"]
-EXTRA = ["ffix_pix_ico_stack.png"]          # reference images that don't end in _ref.png
+EXTRA = ["ffix_pix_ico_stack.png", "far_far_away_flag.png", "mascot_cat.png", "vivi_ffix.png", "cd_icon.png",
+         "nashville_flag_psx.png", "controller_icon.png", "index_background.png", "ff9_hand.png"]          # reference images that don't end in _ref.png
 MAX_PALETTES = 8
 
 IMG_RE = re.compile(r'<img\b[^>]*>', re.I)

@@ -61,6 +61,12 @@
         try { imgs[i].src = dataUrl(pack, s); imgs[i].setAttribute("data-snes-done", "1"); } catch (e) {}
       }
     }
+    /* CSS backgrounds: <td data-snes-bg="NAME"> gets the decoded sprite as background-image */
+    var bgs = document.querySelectorAll ? document.querySelectorAll("[data-snes-bg]") : [];
+    for (var n = 0; n < bgs.length; n++) {
+      var bs = pack[bgs[n].getAttribute("data-snes-bg")];
+      if (bs) { try { bgs[n].style.backgroundImage = "url(" + dataUrl(pack, bs) + ")"; } catch (e) {} }
+    }
   }
 
   try {
