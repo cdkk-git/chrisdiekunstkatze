@@ -1,17 +1,20 @@
 SPRITES.SNP MANIFEST - 4bpp SNES planar tiles, BGR555 palettes (format: see pack.py)
 
-s5ac06ba           30x30      544 B  pal 1  src colours 108   LOSSY      err 22.04  used: index.html <img>, template.html <img>
-s651ba0c          200x33     4048 B  pal 1  src colours 12    exact      err  0.00  used: index.html <img>, template.html <img>
+se4110f3          128x85     5664 B  pal 1  src colours 242   LOSSY      err 10.73  used: index.html <img>
+sd11dd59           16x16      176 B  pal 1  src colours 7     exact      err  0.00  used: index.html <img>
+sab0818e           16x16      160 B  pal 1  src colours 1     exact      err  0.00  used: index.html <img>
 s24c1a8c           16x16      160 B  pal 1  src colours 50    LOSSY      err 12.25  used: index.html <img>
-scd3ff4d          315x26     5168 B  pal 1  src colours 13    exact      err  0.00  used: index.html <img>
-s7deb624          385x26     6320 B  pal 1  src colours 11    exact      err  0.00  used: index.html <img>
-s94c22f5          251x21     3120 B  pal 1  src colours 10    exact      err  0.00  used: index.html <img>
-s97ca490          254x26     4144 B  pal 1  src colours 12    exact      err  0.00  used: index.html <img>
-s0b854f8          125x23     1584 B  pal 1  src colours 10    exact      err  0.00  used: index.html <img>
-se665e50           48x48     1380 B  pal 4  src colours 29    exact      err  0.00  used: about.html cursor --c1, index.html cursor --c1, lionsgate.html cursor --c1, template.html cursor --c1
-sd08924f           96x96     4944 B  pal 4  src colours 29    exact      err  0.00  used: about.html cursor --c2, index.html cursor --c2, lionsgate.html cursor --c2, template.html cursor --c2
-s2cbdd51           64x64     2256 B  pal 3  src colours 29    exact      err  0.00  used: about.html cursor --c1, index.html cursor --c1, lionsgate.html cursor --c1, template.html cursor --c1
-s981ba35          128x128    8544 B  pal 2  src colours 29    exact      err  0.00  used: about.html cursor --c2, index.html cursor --c2, lionsgate.html cursor --c2, template.html cursor --c2
+s41879bf          402x26     6560 B  pal 1  src colours 6     exact      err  0.00  used: index.html <img>
+s6d24f59          644x26    10400 B  pal 1  src colours 2     exact      err  0.00  used: index.html <img>
+s1744b52          412x26     6688 B  pal 1  src colours 2     exact      err  0.00  used: index.html <img>
+s9a08c69            4x10       96 B  pal 1  src colours 4     exact      err  0.00  used: index.html <img>, template.html <img>
+s066800a          430x26     6944 B  pal 1  src colours 2     exact      err  0.00  used: index.html <img>
+s9d0bf6a          202x26     3360 B  pal 1  src colours 2     exact      err  0.00  used: index.html <img>
+s5fe3f16           30x30      544 B  pal 1  src colours 5     exact      err  0.00  used: about.html cursor --c1, index.html cursor --c1, lionsgate.html cursor --c1, template.html cursor --c1
+s56d1b28           60x60     2080 B  pal 1  src colours 5     exact      err  0.00  used: about.html cursor --c2, index.html cursor --c2, lionsgate.html cursor --c2, template.html cursor --c2
+s20ceedc           45x45     1184 B  pal 1  src colours 5     exact      err  0.00  used: about.html cursor --c1, index.html cursor --c1, lionsgate.html cursor --c1, template.html cursor --c1
+s1ce7316           90x90     4640 B  pal 1  src colours 5     exact      err  0.00  used: about.html cursor --c2, index.html cursor --c2, lionsgate.html cursor --c2, template.html cursor --c2
+s5ac06ba           30x30      544 B  pal 1  src colours 108   LOSSY      err 22.04  used: template.html <img>
 s7695f89           32x32      784 B  pal 8  src colours 81    LOSSY      err  9.39  used: favicon.png
 s31dd704          192x192   19264 B  pal 8  src colours 107   LOSSY      err  9.90  used: apple-touch-icon.png
 ffix_pix_ico_sta  168x336   28256 B  pal 1  src colours 155   LOSSY      err  5.84  used: ffix_pix_ico_stack.png

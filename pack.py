@@ -291,7 +291,7 @@ def main():
         def tag(m):
             t = m.group(0)
             sm = SRC_RE.search(t)
-            if not sm:
+            if not sm or "data-nosnes" in t:      # data-nosnes: keep the original (e.g. animated GIF)
                 return t
             name = add(base64.b64decode(sm.group(1)), p + " <img>")
             if "data-snes=" in t:
